@@ -1,0 +1,2 @@
+This is a file meant to introduce git.
+This is the first file I am adding to our repo.
