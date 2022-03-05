@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    
+    'users',
     'startups',
 ]
 
@@ -84,7 +84,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'db-postgresql-teamprojectai50',
+        'NAME': 'defaultdb',
 
         'USER': 'doadmin',
 
