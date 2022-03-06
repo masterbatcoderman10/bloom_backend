@@ -109,4 +109,26 @@ class RegistrationTestCases(APITestCase):
         self.assertEquals(response.json()["message"], "some other detail is incorrect - either the email, or the username")
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    
+class IntegrationTestLoginRegistration(APITestCase):
+
+    def test_login_after_registration(self):
+        
+        #Successful registration
+        url = 'http://127.0.0.1:8000/authentication/register/'
+        objToSend = {'username': "thirdUser", 'email': 'third@third.com', 'password': 'Pa$5word'}
+        response = self.client.post(url, objToSend)
+        token = Token.objects.get_or_create(user__username=objToSend["username"])
+        res_token_reg = response.json()["token"]
+        self.assertEquals(res_token_reg, str(token[0]))
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+
+        #Login after registration
+        url = "http://127.0.0.1:8000/authentication/login/"
+        object_to_send = {'email' : "third@third.com", 'password': "Pa$5word"}
+        response = self.client.post(url, object_to_send)
+        res_token_log = response.json()["token"]
+        #Test to see if the token obtained from loggin in is the same as the token obtained from registration.
+        self.assertEquals(res_token_reg, res_token_log)
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
 
