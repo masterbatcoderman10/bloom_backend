@@ -4,6 +4,26 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
+# DATABASES = {
+
+#     'default': {
+
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+#         'NAME': 'defaultdb',
+
+#         'USER': 'doadmin',
+
+#         'PASSWORD': 'yrByQ4lRvFGolaKE',
+
+#         'HOST': 'db-postgresql-teamprojectai50-do-user-10933426-0.b.db.ondigitalocean.com',
+
+#         'PORT': '25060',
+
+#     }
+
+# }
+
 # This is a sample GitLab CI/CD configuration file that should run without any modifications.
 # It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
 # it uses echo commands to simulate the pipeline execution.
@@ -13,14 +33,27 @@
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
 
-image: python
+image: ubuntu:20.04
 
 before_script:
-  - cd backend
+  - apt -y update
+  - apt -y install apt-utils
+  - apt -y install net-tools python3.8 python3-pip 
+  - apt-get install -y postgresql postgresql-client libpq-dev
+  - apt -y upgrade
   - pip install django
   - pip install djangorestframework
   - pip install psycopg2
 
+services:
+  - postgres:12.2-alpine
+
+
+variables:
+  # Configure postgres service (https://hub.docker.com/_/postgres/)
+  POSTGRES_DB: defaultdb
+  POSTGRES_USER: doadmin
+  POSTGRES_PASSWORD: yrByQ4lRvFGolaKE
 
 
 stages:          # List of stages for jobs, and their order of execution
