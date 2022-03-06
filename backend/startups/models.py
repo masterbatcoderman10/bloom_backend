@@ -4,12 +4,12 @@ from django.db import models
 class Business(models.Model):
     name = models.CharField(max_length=200) #Name type in business table is varChar
     founders = models.CharField(max_length=200)
-    dateFounded = models.DateField(required=False, null=True)
+    dateFounded = models.DateField(null=True)
     description = models.TextField()
     email = models.EmailField()
     num_Employees = models.IntegerField()
     slug = models.SlugField()
-    logo = models.ImageField(required=False, null=True)
+    logo = models.ImageField(null=True)
     INDUSTRY_CHOICES = [
         ('RE', 'Real Estate'),
          ('TR', 'Trading'),
