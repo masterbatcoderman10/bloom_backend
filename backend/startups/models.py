@@ -10,11 +10,11 @@ class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200) #Name type in business table is varChar
     founders = models.CharField(max_length=200)
-    dateFounded = models.DateField(null=True)
+    date_founded = models.DateField(null=True)
     description = models.TextField()
     email = models.EmailField()
-    num_Employees = models.IntegerField()
-    slug = models.SlugField()
+    num_employees = models.IntegerField()
+    
     logo = models.ImageField(null=True)
     INDUSTRY_CHOICES = [
         ('RE', 'Real Estate'),
