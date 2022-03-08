@@ -79,3 +79,23 @@ class BusinessListView(APIView):
 
             data["message"] = "some other detail is incorrect - either the email, or the username"
             return Response(data, status.HTTP_400_BAD_REQUEST)
+
+
+class BusinessDetailView(APIView):
+
+    permissions = [permissions.IsAuthenticated]
+
+    #Function to handle sending data about one selected business to the user, the pk argument stands for primary key
+    def get(self, request, pk):
+
+        pass
+
+    #Function to handle modifying data about one selected business to the user, the pk argument stands for primary key
+    def put(self, request, pk):
+
+        pass
+    
+    #Function to delete a selected business, the pk argument stands for primary key.
+    def delete(self, request, pk):
+
+        pass
