@@ -9,48 +9,12 @@ from startups.models import Business
 from startups.serializers import BusinessSerializer
 
 # Create your views here.
-
-
-@api_view(['PUT', ])
-def update_registered_businesses(request):
-
-    try:
-        business = Business.objects.get()
-    except Business.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == "PUT":
-        serializer = BusinessSerializer(business, data=request.data)
-        #Data: the package that we will be sending to the website
-        data = {}
-        #Checker to see if all the data is in the form
-        if serializer.is_valid():
-            serializer.save()
-            data["Successful"] = "update successful"
-            return Response(data=data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['DELETE', ])
-def delete_registered_businesses(request):
-
-    try:
-        business = Business.objects.get()
-    except Business.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == "DELETE":
-        operation = business.delete()
-        data = {}
-        if operation:
-            data["success"] = "delete successful"
-        else:
-            data["failure"] = "delete failed" 
-        return Response(data=data)
-
-
 class BusinessListView(APIView):
     #anyone should be permitted to login
     permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        pass
 
     def post(self, request):
 
