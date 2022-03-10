@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import APIView, api_view
 from rest_framework import permissions
-
+from .permissions import IsOwner
 from startups.models import Business
 from startups.serializers import BusinessSerializer
 
@@ -35,8 +35,6 @@ def from_future(date_text):
 class BusinessListView(APIView):
     # anyone should be permitted to login
     permission_classes = [permissions.IsAuthenticated]
-
-    
 
     def get(self, request):
         pass
@@ -98,8 +96,12 @@ class BusinessDetailView(APIView):
 
     # Function to handle sending data about one selected business to the user, the pk argument stands for primary key
     def get(self, request, pk):
-
+        data = {}
         business = Business.objects.get(pk=pk)
+        
+        if request.user != business.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
         serializer = BusinessSerializer(business)
         return Response(serializer.data, status.HTTP_200_OK)
 
@@ -110,6 +112,10 @@ class BusinessDetailView(APIView):
         data = {}
         #Selecting the business to modify
         business = Business.objects.get(pk=pk)
+        
+        if request.user != business.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
         #Check to see if number of employees provided is non-negative
         try:
             req_emp = request.data["num_employees"]
