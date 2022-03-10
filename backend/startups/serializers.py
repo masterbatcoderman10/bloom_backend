@@ -8,7 +8,7 @@ class BusinessSerializer(serializers.ModelSerializer):
         model = Business
         fields = (
             'id', 
-            'user', 
+             
             'name', 
             'founders', 
             'date_founded', 
