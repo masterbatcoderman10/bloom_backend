@@ -1,5 +1,6 @@
 import datetime
 from turtle import st
+from django.http import QueryDict
 from django.shortcuts import render
 from html5lib import serialize
 from rest_framework.response import Response
@@ -109,10 +110,16 @@ class BusinessDetailView(APIView):
     def put(self, request, pk):
 
         
-        data = {}
-        #Selecting the business to modify
-        business = Business.objects.get(pk=pk)
+        data = dict(request.data)
         
+        #Selecting the business to modify
+        try:
+            business = Business.objects.get(pk=pk)
+        except Business.DoesNotExist:
+            # data["message"] = "business does not exist"
+            # return Response(data, status.HTTP_400_BAD_REQUEST)
+            pass
+
         if request.user != business.user:
             data["message"] = "Not authorized"
             return Response(data, status.HTTP_401_UNAUTHORIZED)
@@ -120,7 +127,7 @@ class BusinessDetailView(APIView):
         try:
             req_emp = request.data["num_employees"]
 
-            if req_emp < 0:
+            if int(req_emp) < 0:
                 data["message"] = "Employees can not be a negative number"
                 return Response(data, status.HTTP_400_BAD_REQUEST)
         except KeyError:
@@ -129,7 +136,7 @@ class BusinessDetailView(APIView):
             #we don't want the program to set the default value to one so we retrieve it and 
             #change the request.data value
             req_emp = business.num_employees
-            request.data["num_employees"] = req_emp
+            data["num_employees"] = req_emp
 
             
 
@@ -142,25 +149,34 @@ class BusinessDetailView(APIView):
             req_founders = request.data["founders"]
         except KeyError:
             req_founders = business.founders
-            request.data["founders"] = req_founders
+            data["founders"] = req_founders
         
         try:
             req_name = request.data["name"]
         except KeyError:
             req_name = business.name
-            request.data["name"] = req_name
+            data["name"] = req_name
         
         try:
             req_email = request.data["email"]
+            #check if email alredy exists
+            try:
+                Business.objects.get(email=req_email)
+                data["message"] = "Business email already exists"
+
+                return Response(data, status.HTTP_400_BAD_REQUEST)
+            except Business.DoesNotExist:
+                print("All good")
+
         except KeyError:
             req_email = business.email
-            request.data["email"] = req_email
+            data["email"] = req_email
 
         try:
             req_description = request.data["description"]
         except KeyError:
             req_description = business.description
-            request.data["description"] = req_description
+            data["description"] = req_description
         
 
         
@@ -181,17 +197,18 @@ class BusinessDetailView(APIView):
                 return Response(data, status.HTTP_400_BAD_REQUEST)
         except KeyError:
 
-            print("date doesn't need to be modified")
+            print("\n")
 
         #This loads the serializer with the selected business and the request data.
         #Note this looks different from the serializer for post since this function is
         #trying to modify an existing business.
-        serializer = BusinessSerializer(business, data=request.data)
+        serializer = BusinessSerializer(business, data=data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             data["message"] = "Edit successful"
             return Response(data=data, status=status.HTTP_200_OK)
         
+        print(serializer.errors)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
 

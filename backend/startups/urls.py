@@ -6,6 +6,6 @@ from . import views
 urlpatterns = [
 
     path('', view=views.BusinessListView.as_view()),
-    path('<int:pk>', view=views.BusinessDetailView.as_view())
+    path('<int:pk>/', view=views.BusinessDetailView.as_view())
     
 ]
