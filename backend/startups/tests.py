@@ -392,7 +392,7 @@ class BusinessPutTests(APITestCase):
         self.assertEquals(bloom.num_employees, 6)
         self.assertEquals(bloom.date_founded, datetime.strptime("2022-02-20", "%Y-%m-%d").date())
     
-    def test_unsuccessful_not_authorized(self):
+    def test_unsuccessful_incorrect_account(self):
         
 
         token = Token.objects.get_or_create(user=self.user)
@@ -408,6 +408,26 @@ class BusinessPutTests(APITestCase):
         response = self.client.put(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        bloom = Business.objects.get(pk=id)
+        self.assertEquals(bloom.name, "TestBusiness")
+        self.assertEquals(bloom.email, "test@test.com")
+        self.assertEquals(bloom.description, "This is a test startup")
+        self.assertEquals(bloom.founders, "team500")
+        self.assertEquals(bloom.industry, "SR")
+        self.assertEquals(bloom.num_employees, 10)
+        self.assertEquals(bloom.date_founded, datetime.strptime("2022-01-20", "%Y-%m-%d").date())
+    
+    def test_unsuccessful_not_authorized(self):
+        
+        objToSend = {
+            "email" : "new@new.com",
+        }
+        id = self.b3.pk
+        url = f"http://127.0.0.1:8000/startups/{id}/"
+
+        response = self.client.put(url, objToSend, format="json")
+
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
         bloom = Business.objects.get(pk=id)
         self.assertEquals(bloom.name, "TestBusiness")
         self.assertEquals(bloom.email, "test@test.com")
