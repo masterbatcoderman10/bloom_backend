@@ -2,6 +2,16 @@
   --primary: #fff;
 }
 
+#sign-in-btn {
+  background-color: #000;
+  color: #fff;
+}
+
+#sign-in-btn:hover {
+  background-color: #fff;
+  color: #000;
+}
+
 .btn {
   padding: 8px 20px;
   border-radius: 2px;

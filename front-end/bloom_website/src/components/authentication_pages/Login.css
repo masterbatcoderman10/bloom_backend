@@ -1,3 +1,71 @@
 #sign-in {
     font-family: 'Vollkorn', serif;
+    margin: 6% auto 1% auto;
+    width: 60%;
+    
+}
+
+#signin { 
+    margin: 20px 20px 20% 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.indicator-lb {
+
+    font-family: 'Vollkorn', serif;
+
+}
+
+#emailHelp {
+    font-size: 10px;
+    color: rgb(223, 223, 223)!important;
+}
+
+.form-control.password  {
+    width: 60%;
+}
+.form-control.email  {
+    width: 60%;
+}
+
+.btn.btn-primary {
+
+    background: #000;
+    color: #fff;
+    border: #000;
+    margin: 3% auto;
+    clear: both;
+    width: 20%;
+
+
+}
+.btn.btn-primary:hover {
+
+    background: #e0ceb9;
+    color: #000;
+    border: #e0ceb9;
+    margin: 3% auto;
+    width: 20%;
+
+}
+
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #000;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+hr:after {
+    background: #fff;
+    content: 'New To Bloom?';
+    color: #000;
+    font-family: 'Vollkorn', serif;
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+    width: 40%;
 }
