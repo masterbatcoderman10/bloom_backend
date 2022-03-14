@@ -26,16 +26,17 @@ export default function Login(e) {
         .then(function (response) {
           console.log(response.data);
           localStorage.setItem("token", JSON.stringify(response.data.token));
-          document.querySelector(".information").innerHTML = "Login Successful"
+          
           
         })
-        .catch(function (error) {
+        .catch((error) =>  {
+          document.querySelector(".information").innerHTML = "Email or password incorrect"
           console.log(error);
         });
 
       
     } else {
-      document.querySelector(".information").innerHTML = "Login Failed"
+      document.querySelector(".information").innerHTML = "Do not leave any field blank"
     }
   }
 

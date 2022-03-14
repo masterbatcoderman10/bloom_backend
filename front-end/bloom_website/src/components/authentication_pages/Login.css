@@ -1,8 +1,14 @@
 #sign-in {
     font-family: 'Vollkorn', serif;
     margin: 6% auto 1% auto;
+    font-size: 2.5em;
     width: 60%;
     
+}
+
+.form-group {
+    width: 50%;
+    margin: 0 auto;
 }
 
 #signin { 
@@ -23,10 +29,10 @@
 }
 
 .form-control.password  {
-    width: 60%;
+    width: 100%;
 }
 .form-control.email  {
-    width: 60%;
+    width: 100%;
 }
 
 .btn.btn-primary {
@@ -37,6 +43,8 @@
     margin: 3% auto;
     clear: both;
     width: 20%;
+    text-align: center;
+    display: block;
 
 
 }
@@ -50,9 +58,19 @@
 
 }
 
+.information {
+    font-family: 'Vollkorn', serif;
+    font-size: 14px;
+    color: rgb(255, 0, 0);
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+}
+
 hr {
     border: none;
-    border-top: 3px double #333;
+    border-top: 3px double rgb(0, 0, 0);
+    background:rgb(0, 0, 0);
     color: #000;
     overflow: visible;
     text-align: center;
@@ -60,9 +78,10 @@ hr {
 }
 
 hr:after {
-    background: #fff;
+    background: rgb(255, 255, 255);
     content: 'New To Bloom?';
-    color: #000;
+    color: #000!important;
+    
     font-family: 'Vollkorn', serif;
     padding: 0 4px;
     position: relative;
