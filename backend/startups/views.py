@@ -42,53 +42,68 @@ class BusinessListView(APIView):
 
     def post(self, request):
 
-        data = {}
+    data = {}
+        
+    serializer = BusinessSerializer(data=request.data)
 
-        serializer = BusinessSerializer(data=request.data)
+        #Check to see if all required fields are received from the client
+    try:
+        req_name = request.data["name"]
+        req_founders = request.data["founders"]
+        req_date_founded = request.data["date_founded"]
+        req_description = request.data["description"]
+        req_email = request.data["email"]
+        req_num_employees = request.data["num_employees"]
+        req_industry = request.data["industry"]
 
-        # Check to see if all required fields are received from the client
+    except KeyError:
+        data["message"] = "missing field"
+
+        return Response(data, status.HTTP_400_BAD_REQUEST)
+        
+        #Check if business name already exists in our database
+    try:
+        Business.objects.get(email=req_email)
+        data["message"] = "Business email already exists"
+
+        return Response(data, status.HTTP_400_BAD_REQUEST)
+    except Business.DoesNotExist:
+        #Checking if the number of employees is zero or less
         try:
-            req_name = request.data["name"]
-            req_founders = request.data["founders"]
-            req_description = request.data["description"]
-            req_email = request.data["email"]
-            req_num_employees = request.data["num_employees"]
-            #req_industry = request.data["industry"]
-            req_date = request.data["date_founded"]
-
-        except KeyError:
-            data["message"] = "missing field"
-
-            return Response(data, status.HTTP_400_BAD_REQUEST)
-
-        # Check if business name already exists in our database
-        try:
-            Business.objects.get(email=req_email)
-            data["message"] = "Business email already exists"
-
-            return Response(data, status.HTTP_400_BAD_REQUEST)
+            bus = Business.objects.get(num_employees=request.data["num_employees"])
+            if bus <= 0:
+                data["message"] = "Number of employees is invalid"
+                return Response(data, status.HTTP_400_BAD_REQUEST)
+            else:
+                data["message"] = "Number of employees is valid"
+                return Response(data, status=status.HTTP_200_OK)
         except Business.DoesNotExist:
-            print('Everything is valid')
-        # Check if email exists (Note: Can one user register multiple businesses?)
-        date_correct = validate(req_date)
-        if not date_correct:
-            data["message"] = "Date is in an invalid format"
-            return Response(data, status=status.HTTP_400_BAD_REQUEST)
+                #Checking if thedate-founded is in the future
+            try:
+                bus = Business.objects.get(date_founded=request.data["date_founded"])
+                if (validate(bus) and (from_future(bus)==False)):
+                    data["message"] = "Date founded is in the future"
+                    return Response(data, status.HTTP_400_BAD_REQUEST)
+                else:
+                    data["message"] = "Valid founded date"
+                    return Response(data, status=status.HTTP_200_OK)
+            except Business.DoesNotExist:
+                print('Everything is valid')
 
-        # Checking if the data sent is valid
-        if serializer.is_valid():
-            # Code that follows valid registration.
-            print("got to here")
-            new_business = serializer.save(user=request.user)
-            data["message"] = "registration successful"
-            # Sending a new token after successful registration
+        #Checking if the data sent is valid
+    if serializer.is_valid():
+            #Code that follows valid registration.
+        new_business = serializer.save(user=request.user)
+        data["message"] = "registration successful"
+        #Sending a new token after successful registration
+        data["new_business"] = new_business
+          
+        return Response(data, status.HTTP_200_OK)
+        
+    else:
 
-            return Response(data, status.HTTP_200_OK)
-
-        else:
-
-            data["message"] = "some other detail is incorrect"
-            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+        data["message"] = "some other detail is incorrect - either the email, or the username"
+        return Response(data, status.HTTP_400_BAD_REQUEST)
 
 
 class BusinessDetailView(APIView):
