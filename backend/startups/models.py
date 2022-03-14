@@ -1,6 +1,6 @@
 from re import U
 from django.db import models
-<<<<<<< HEAD
+
 
 #This model is for the start-ups that sign up with us
 class Business(models.Model):
@@ -23,7 +23,7 @@ class Business(models.Model):
     # industry = models.CharField(max_length=2, choices=INDUSTRY_CHOICES, null=True)
     # size = models.IntegerField()
     pass
-=======
+
 from django.db import models
 from django.contrib.auth import get_user_model
 # Create your models here.
@@ -51,4 +51,4 @@ class Business(models.Model):
     ]
     industry = models.CharField(max_length=2, choices=INDUSTRY_CHOICES, default='OT')
 
->>>>>>> 5452bc93792bde091a5a1be776b33cc4e0120005
+
