@@ -256,7 +256,7 @@ class BusinessDetailView(APIView):
         except Business.DoesNotExist:
 
             data["message"] = "Business requested does not exist"
-
+            #Returning response
             return Response(data, status.HTTP_204_NO_CONTENT)
         
         
