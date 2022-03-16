@@ -2,7 +2,7 @@ import datetime
 from turtle import st
 from django.http import QueryDict
 from django.shortcuts import render
-from html5lib import serialize
+
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import APIView, api_view
