@@ -1,0 +1,7 @@
+DJANGO_SUPERUSER_PASSWORD=password
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@admin.com
+DATABASE_USER=postgres
+DATABASE_PASSWORD=yrByQ4lRvFGolaKE
+DATABASE_USER=doadmin
+DATABASE_HOST=db-postgresql-teamprojectai50-do-user-10933426-0.b.db.ondigitalocean.com
