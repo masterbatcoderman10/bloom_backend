@@ -16,7 +16,7 @@ function HeroSection() {
           buttonSize='btn--large'
           onClick={console.log('hey')}
         >
-          Register
+          Sign-In
         </Button>
       </div>
     </div>
