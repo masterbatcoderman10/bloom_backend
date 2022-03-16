@@ -38,7 +38,11 @@ class BusinessListView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        pass
+        
+        businesses = Business.objects.get(user=request.user)
+        serializer = BusinessSerializer(businesses, many=True)
+
+        return Response(serializer.data, status.HTTP_200_OK)
 
     def post(self, request):
 
@@ -113,6 +117,11 @@ class BusinessDetailView(APIView):
     # Function to handle sending data about one selected business to the user, the pk argument stands for primary key
     def get(self, request, pk):
         data = {}
+
+        if request.user != business.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
+
         business = Business.objects.get(pk=pk)
         
         if request.user != business.user:
@@ -127,6 +136,9 @@ class BusinessDetailView(APIView):
         
         data = dict(request.data)
         
+        if request.user != business.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
         #Selecting the business to modify
         try:
             business = Business.objects.get(pk=pk)
@@ -135,9 +147,6 @@ class BusinessDetailView(APIView):
             # return Response(data, status.HTTP_400_BAD_REQUEST)
             pass
 
-        if request.user != business.user:
-            data["message"] = "Not authorized"
-            return Response(data, status.HTTP_401_UNAUTHORIZED)
         #Check to see if number of employees provided is non-negative
         try:
             req_emp = request.data["num_employees"]
@@ -230,4 +239,26 @@ class BusinessDetailView(APIView):
     # Function to delete a selected business, the pk argument stands for primary key.
     def delete(self, request, pk):
 
-        pass
+        data = {}
+
+        if request.user != business.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
+        
+        try:
+            business = Business.objects.get(pk=pk)
+            business.delete()
+
+            data["message"] = "Business successfully deleted"
+
+            return Response(data, status.HTTP_200_OK)
+        
+        except Business.DoesNotExist:
+
+            data["message"] = "Business requested does not exist"
+
+            return Response(data, status.HTTP_204_NO_CONTENT)
+        
+        
+        
+
