@@ -11,10 +11,17 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -84,13 +91,13 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'defaultdb',
+        'NAME': env("DATABASE_NAME"),
 
-        'USER': 'doadmin',
+        'USER': env('DATABASE_USER'),
 
-        'PASSWORD': 'yrByQ4lRvFGolaKE',
+        'PASSWORD': env('DATABASE_PASSWORD'),
 
-        'HOST': 'db-postgresql-teamprojectai50-do-user-10933426-0.b.db.ondigitalocean.com',
+        'HOST': env('DATABASE_HOST'),
 
         'PORT': '25060',
 
