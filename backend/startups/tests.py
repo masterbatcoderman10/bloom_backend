@@ -427,7 +427,7 @@ class BusinessPutTests(APITestCase):
 
         response = self.client.put(url, objToSend, format="json")
 
-        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
         bloom = Business.objects.get(pk=id)
         self.assertEquals(bloom.name, "TestBusiness")
         self.assertEquals(bloom.email, "test@test.com")
