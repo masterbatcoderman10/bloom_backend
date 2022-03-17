@@ -79,23 +79,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-
     'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'defaultdb',
-
-        'USER': 'doadmin',
-
-        'PASSWORD': 'yrByQ4lRvFGolaKE',
-
-        'HOST': 'db-postgresql-teamprojectai50-do-user-10933426-0.b.db.ondigitalocean.com',
-
-        'PORT': '25060',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
-
 }
 
 
