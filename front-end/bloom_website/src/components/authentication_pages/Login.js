@@ -3,6 +3,7 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import "./Login.css"
 
 export default function Login(e) {
   
@@ -21,19 +22,21 @@ export default function Login(e) {
 
     if (emailVar && passwordVar) {
       axios
-        .post("http://127.0.0.1:8000/login/", obj)
+        .post("http://127.0.0.1:8000/authentication/login/", obj)
         .then(function (response) {
           console.log(response.data);
           localStorage.setItem("token", JSON.stringify(response.data.token));
           
+          
         })
-        .catch(function (error) {
+        .catch((error) =>  {
+          document.querySelector(".information").innerHTML = "Email or password incorrect"
           console.log(error);
         });
 
       
     } else {
-      document.querySelector(".information").innerHTML = "Login Failed"
+      document.querySelector(".information").innerHTML = "Do not leave any field blank"
     }
   }
 
@@ -41,11 +44,11 @@ export default function Login(e) {
     <div className="container">
         <div className="row">
             <div className="col-lg-12">
-                <h2>Sign In</h2>
-                <form>
+                <h2 id="sign-in">Sign In</h2>
+                <form id="signin">
                 <label className="information"></label>
                 <div className="form-group">
-                    <label >Email address</label>
+                    <label className="indicator-lb">Email address</label>
                     <input
                     type="email"
                     className="form-control email"
@@ -58,7 +61,7 @@ export default function Login(e) {
                     </small>
                 </div>
                 <div className="form-group">
-                    <label>Password</label>
+                    <label className="indicator-lb">Password</label>
                     <input
                     type="password"
                     className="form-control password"
@@ -67,7 +70,11 @@ export default function Login(e) {
                     />
                 </div>
                 <button className="btn btn-primary" onClick={e => login(e)}>
-                    Submit
+                    Sign-In
+                </button>
+                <hr className="split-hr" />
+                <button className="btn btn-primary">
+                    Sign-Up
                 </button>
                 </form>
             </div>

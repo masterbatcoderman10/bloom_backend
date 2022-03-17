@@ -25,5 +25,6 @@ class Business(models.Model):
          ('HS', 'Hospitality'),
          ('OT', 'Others')
     ]
-    industry = models.CharField(max_length=2, choices=INDUSTRY_CHOICES, null=True)
-    
+    industry = models.CharField(max_length=2, choices=INDUSTRY_CHOICES, default='OT')
+
+

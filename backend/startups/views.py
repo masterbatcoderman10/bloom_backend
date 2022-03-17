@@ -118,15 +118,13 @@ class BusinessDetailView(APIView):
     def get(self, request, pk):
         data = {}
 
-        if request.user != business.user:
-            data["message"] = "Not authorized"
-            return Response(data, status.HTTP_401_UNAUTHORIZED)
-
+        
         business = Business.objects.get(pk=pk)
         
         if request.user != business.user:
             data["message"] = "Not authorized"
             return Response(data, status.HTTP_401_UNAUTHORIZED)
+            
         serializer = BusinessSerializer(business)
         return Response(serializer.data, status.HTTP_200_OK)
 
@@ -136,9 +134,6 @@ class BusinessDetailView(APIView):
         
         data = dict(request.data)
         
-        if request.user != business.user:
-            data["message"] = "Not authorized"
-            return Response(data, status.HTTP_401_UNAUTHORIZED)
         #Selecting the business to modify
         try:
             business = Business.objects.get(pk=pk)
@@ -147,6 +142,9 @@ class BusinessDetailView(APIView):
             # return Response(data, status.HTTP_400_BAD_REQUEST)
             pass
 
+        if request.user != business.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
         #Check to see if number of employees provided is non-negative
         try:
             req_emp = request.data["num_employees"]
@@ -241,13 +239,14 @@ class BusinessDetailView(APIView):
 
         data = {}
 
-        if request.user != business.user:
-            data["message"] = "Not authorized"
-            return Response(data, status.HTTP_401_UNAUTHORIZED)
         
         try:
             business = Business.objects.get(pk=pk)
             business.delete()
+
+            if request.user != business.user:
+                data["message"] = "Not authorized"
+                return Response(data, status.HTTP_401_UNAUTHORIZED)
 
             data["message"] = "Business successfully deleted"
 
