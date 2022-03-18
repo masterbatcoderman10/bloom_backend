@@ -69,6 +69,12 @@ build-job:       # This job runs in the build stage, which runs first.
     - cd backend
     - python manage.py makemigrations 
     - python manage.py migrate 
+      
+  artifacts:
+    name: "$CI_JOB_STAGE-$CI_COMMIT_REF_NAME"
+    paths:
+      - /
+    
 
 test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
@@ -78,15 +84,7 @@ test-job:   # This job runs in the test stage.
     - sleep 6
     - python manage.py test
 
-artifact:
-  script:
-    - echo "creating artifact"    
-  artifacts:
-    name: "Bloom"
-    paths:
-      - $CI_PROJECT_DIR
-    exclude:
-      - $CI_PROJECT_DIR/deploy/*
+
 
 
 
