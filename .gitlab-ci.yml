@@ -41,10 +41,11 @@ before_script:
   
   - apt-get install -y postgresql postgresql-client libpq-dev
   - apt -y upgrade
-  - pip install --upgrade pip wheel
-  - pip install django-cors-headers
+  - pip install --upgrade pip 
+  
   
   - pip install -r backend/requirements.txt
+  - pip install django-cors-headers
 
 services:
   - postgres
