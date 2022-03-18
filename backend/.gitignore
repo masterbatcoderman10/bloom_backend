@@ -4,8 +4,9 @@ bloom/
 env
 test.txt
 startups/__pycache__/
-backend/__pycache__/
+
 dashboard/__pycache__/
 users/__pycache__/
 backend/__pycache__/settings.cpython-38.pyc
 backend/__pycache__/urls.cpython-38.pyc
+backend/__pycache__/
