@@ -36,7 +36,7 @@
 image: python:3.9.10-slim-buster
 
 before_script:
-  - apt -y update && apt install gcc
+  - apt -y update && apt install -y gcc
   - apt -y install apt-utils
   
   - apt-get install -y postgresql postgresql-client libpq-dev
