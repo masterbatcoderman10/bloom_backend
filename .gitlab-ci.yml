@@ -73,7 +73,7 @@ build-job:       # This job runs in the build stage, which runs first.
   artifacts:
     name: "$CI_JOB_STAGE-$CI_COMMIT_REF_NAME"
     paths:
-      - /
+      - $CI_PROJECT_DIR
     
 
 test-job:   # This job runs in the test stage.
