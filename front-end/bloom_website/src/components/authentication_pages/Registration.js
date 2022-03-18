@@ -3,30 +3,77 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./Login.css";
+import "./Registration.css"
 
 export default function Registration() {
+
+  const navigate = useNavigate();
+
+
+  function register(e) {
+
+    e.preventDefault();
+    const user = document.getElementById("username"); 
+    const password1 = document.getElementById("pass1");
+    const password2 = document.getElementById("pass2");
+    const emailT = document.getElementById("email");
+
+    if (!(password1 === password2)) {
+      document.querySelector("label.information").innerHTML = "Password's do not match";
+      return -1;
+    }
+    if (!(user || password1 || password2 || emailT)) {
+      document.querySelector("label.information").innerHTML = "Missing field";
+      return -1;
+    }
+
+    const objToSend = {
+      username : user,
+      email : emailT,
+      password : password1
+    }
+
+    axios
+    .post("http://127.0.0.1:8000/authentication/register/", objToSend)
+    .then(function (response) {
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      document.querySelector("label.information").innerHTML = "Registration Successful"
+    }).catch(error => console.log(error))
+
+
+
+  }
   return (
     <div className="container">
       <div className="row">
-        <h2>Sign Up</h2>
-        <form className="col-lg-12">
+        <h2 className="pg-title">Sign Up</h2>
+        <form className="col-lg-12 reg-form">
+          
           <div className="row">
-            <div className="col-lg-12">
-                <input type="email" className="form-control" placeholder="Email" />    
+          <label className="information"></label>
+            <div className="col-lg-12 form-type">
+                <label className="indicator-lb">Email</label>
+                <input id="email" type="email" className="form-control" placeholder="Email" />    
             </div>
-            <div className="col-lg-12">
-                <input type="" className="form-control" placeholder="Username" />    
+            <div className="col-lg-12 form-type">
+                <label className="indicator-lb">Username</label>
+                <input id="username" type="" className="form-control" placeholder="Username" />    
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 form-type">
+            <label id="pass1" className="indicator-lb">Password</label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
-                placeholder="First name"
+                placeholder="Password"
               />
             </div>
-            <div className="col-lg-6">
-              <input type="text" className="form-control" placeholder="Last name" />
+            <div className="col-lg-6 form-type">
+            <label className="indicator-lb">Reconfirm Password</label>
+              <input id="pass2" type="password" className="form-control" placeholder="Password" />
             </div>
+            <button className="btn btn-primary" onClick={e => register(e)}>
+                    Sign-Up
+            </button>
             
           </div>
         </form>

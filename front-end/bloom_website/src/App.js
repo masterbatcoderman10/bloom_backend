@@ -10,6 +10,8 @@ import HeroSection from './components/HeroSection';
 import CardItem from './components/CardItem';
 import Footer from './components/Footer';
 import Cards from './components/Cards';
+import ProtectedRoutes from './ProtectedRoutes';
+
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Registration />}></Route>
+          <Route element={<ProtectedRoutes />}>
+            
+          </Route>
         </Routes>
         
         <Footer />
