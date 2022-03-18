@@ -42,7 +42,7 @@ before_script:
   - apt-get install -y postgresql postgresql-client libpq-dev
   - apt -y upgrade
   - pip install --upgrade pip wheel
-  - pip install backports.zoneinfo
+  - pip install tzdata
   
   
   - pip install -r backend/requirements.txt
