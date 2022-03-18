@@ -33,10 +33,10 @@
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
 
-image: python
+image: python:3.9.10-slim-buster
 
 before_script:
-  - apt -y update
+  - apt -y update && apt install gcc
   - apt -y install apt-utils
   
   - apt-get install -y postgresql postgresql-client libpq-dev
