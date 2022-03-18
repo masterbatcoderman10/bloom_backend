@@ -36,15 +36,16 @@
 image: python
 
 before_script:
-  - apt -y update
+  - apt -y update && apt install -y gcc
   - apt -y install apt-utils
   
   - apt-get install -y postgresql postgresql-client libpq-dev
   - apt -y upgrade
-  - pip install --upgrade pip
-  - pip install django-cors-headers
+  - pip install --upgrade pip wheel
+  
   
   - pip install -r backend/requirements.txt
+  - pip install django-cors-headers
 
 services:
   - postgres
