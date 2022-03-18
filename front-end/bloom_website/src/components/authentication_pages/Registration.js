@@ -13,13 +13,15 @@ export default function Registration() {
   function register(e) {
 
     e.preventDefault();
-    const user = document.getElementById("username"); 
-    const password1 = document.getElementById("pass1");
-    const password2 = document.getElementById("pass2");
-    const emailT = document.getElementById("email");
+    const user = document.getElementById("username").value; 
+    const password1 = document.getElementById("pass1").value;
+    const password2 = document.getElementById("pass2").value;
+    const emailT = document.getElementById("email").value;
 
     if (!(password1 === password2)) {
       document.querySelector("label.information").innerHTML = "Password's do not match";
+      console.log(password1);
+      console.log(password2);
       return -1;
     }
     if (!(user || password1 || password2 || emailT)) {
@@ -60,8 +62,9 @@ export default function Registration() {
                 <input id="username" type="" className="form-control" placeholder="Username" />    
             </div>
             <div className="col-lg-6 form-type">
-            <label id="pass1" className="indicator-lb">Password</label>
+            <label  className="indicator-lb">Password</label>
               <input
+                id="pass1"
                 type="password"
                 className="form-control"
                 placeholder="Password"
