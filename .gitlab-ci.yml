@@ -41,12 +41,9 @@ before_script:
   
   - apt-get install -y postgresql postgresql-client libpq-dev
   - apt -y upgrade
-  - pip install django
-  - pip install djangorestframework
-  - pip install psycopg2
-  - python -m pip install Pillow
   - pip install django-cors-headers
-  - cd backend
+  
+  - pip install -r backend/requirements.txt
 
 services:
   - postgres
@@ -67,15 +64,27 @@ stages:          # List of stages for jobs, and their order of execution
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
+    - cd backend
     - python manage.py makemigrations
     - python manage.py migrate 
 
 test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
+    - cd backend
     - echo "Running unit tests... This will take about 60 seconds."
     - sleep 6
     - python manage.py test
+
+artifact:
+  script:
+    - echo "creating artifact"    
+  artifacts:
+    name: "Bloom"
+    paths:
+      - $CI_PROJECT_DIR
+    exclude:
+      - $CI_PROJECT_DIR/deploy/*
 
 
 
