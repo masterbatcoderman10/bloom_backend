@@ -33,17 +33,18 @@
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
 
+
 image: python
 
 before_script:
   - apt -y update && apt install -y gcc
   - apt -y install apt-utils
-  
+    
   - apt-get install -y postgresql postgresql-client libpq-dev
   - apt -y upgrade
   - pip install --upgrade pip wheel
-  
-  
+    
+    
   - pip install -r backend/requirements.txt
   - pip install django-cors-headers
 
@@ -52,7 +53,7 @@ services:
 
 
 variables:
-  # Configure postgres service (https://hub.docker.com/_/postgres/)
+    # Configure postgres service (https://hub.docker.com/_/postgres/)
   POSTGRES_DB: defaultdb
   POSTGRES_USER: doadmin
   POSTGRES_PASSWORD: yrByQ4lRvFGolaKE
@@ -61,7 +62,7 @@ variables:
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
-  
+    
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
@@ -69,9 +70,9 @@ build-job:       # This job runs in the build stage, which runs first.
     - cd backend
     - python manage.py makemigrations 
     - python manage.py migrate 
-      
-  
+        
     
+      
 
 test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
@@ -81,15 +82,7 @@ test-job:   # This job runs in the test stage.
     - sleep 6
     - python manage.py test
 
-artifact:
-  script:
-    - echo "creating artifact"    
-  artifacts:
-    name: "SuperDjangoCICD"
-    paths:
-      - $CI_PROJECT_DIR
-    exclude:
-      - $CI_PROJECT_DIR/deploy/*
+
 
 
 
