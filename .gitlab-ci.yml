@@ -90,13 +90,13 @@ test-job:   # This job runs in the test stage.
     - python manage.py test
 
 
-deploy-django:
-
+deploy:
   image: ruby
   stage: deploy
   before_script:
     - gem install dpl
   script:
+    - cd backend
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
   environment:
     name: main
