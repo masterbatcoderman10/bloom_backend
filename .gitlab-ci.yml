@@ -94,16 +94,17 @@ test-job:   # This job runs in the test stage.
 deploy-django:
   image: ruby
   stage: deploy
+  tags:
+    - ruby
   before_script:
     - gem install dpl
-    - sudo apt-get install python-tk python3-tk tk-dev
-    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    #- wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
     
   script:
     - cd backend
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
-    - export HEROKU_API_KEY=$HEROKU_API_KEY
-    - heroku run --app $HEROKU_APPNAME migrate
+    #- export HEROKU_API_KEY=$HEROKU_API_KEY
+    #- heroku run --app $HEROKU_APPNAME migrate
   environment:
     name: main
     url: $HEROKU_APP_HOST
