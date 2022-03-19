@@ -438,5 +438,156 @@ class BusinessPutTests(APITestCase):
         self.assertEquals(bloom.date_founded, datetime.strptime("2022-01-20", "%Y-%m-%d").date())
 
         
+class BusinessPosyTests(APITestCase):
+
+    def setUp(self):
+
+        self.user = User.objects.create_user(email='first@first.com', password='Pa$5word', username='firstUser')
+        Token.objects.create(user=self.user)
+        self.b1 = Business.objects.create(
+            # user=self.user,
+            # name="Bloom",
+            # founders="team50",
+            # description="Bloom is a platform for start-ups",
+            # date_founded= datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            # num_employees=6,
+            # industry="SR",
+            # email="bloom@bloom.com"
+        )
         
+        Business.objects.create(
+            user=self.user,
+            name="Recycle",
+            founders="team50",
+            description="Recycle is a platform for recycling",
+            date_founded= datetime.strptime("2022-02-25", "%Y-%m-%d"),
+            num_employees=6,
+            industry="SR",
+            email="re@re.com"
+        )
+
+        self.b3 = Business.objects.create(
+            user = self.user2,
+            name="TestBusiness",
+            founders="team500",
+            description="This is a test startup",
+            date_founded= datetime.strptime("2022-01-20", "%Y-%m-%d"),
+            num_employees=10,
+            industry="SR",
+            email="test@test.com"
+        )
     
+    def test_successful_registration(self):    
+        
+        token = Token.objects.get_or_create(user=self.user)
+        token2 = str(token[0])
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
+        objToSend = {
+            "name" : "Bloom Inc",
+            "founders" : "team50",
+            "description" : "Bloom is a platform for start-ups",
+            "date_founded" : datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            "num_employees" :6,
+            "industry": "SR",
+            "email" : "bloom@bloom.com"
+        }
+        id = self.b1.pk
+        url = f"http://127.0.0.1:8000/startups/{id}/"
+
+        response = self.client.post(url, objToSend, format="json")
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        bloom = Business.objects.get(pk=id)
+        self.assertEquals(bloom.name, "Bloom")
+        self.assertEquals(bloom.email, "bloom@bloom.com")
+        self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
+        self.assertEquals(bloom.founders, "team50")
+        self.assertEquals(bloom.industry, "SR")
+        self.assertEquals(bloom.num_employees, 6)
+        self.assertEquals(bloom.date_founded, datetime.strptime("2022-02-20", "%Y-%m-%d").date())
+
+    def test_unsuccessful_reg_email_already_exists(self):    
+        
+        token = Token.objects.get_or_create(user=self.user)
+        token2 = str(token[0])
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
+        objToSend = {
+            "name" : "Bloom Inc",
+            "founders" : "team50",
+            "description" : "Bloom is a platform for start-ups",
+            "date_founded" : datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            "num_employees" :6,
+            "industry": "SR",
+            "email" : "re@re.com",
+        }
+        id = self.b1.pk
+        url = f"http://127.0.0.1:8000/startups/{id}/"
+
+        response = self.client.post(url, objToSend, format="json")
+
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #How do I assert that no business object was created
+    
+    def test_unsuccessful_reg_negative_num_employees(self):    
+        
+        token = Token.objects.get_or_create(user=self.user)
+        token2 = str(token[0])
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
+        objToSend = {
+            "name" : "Bloom Inc",
+            "founders" : "team50",
+            "description" : "Bloom is a platform for start-ups",
+            "date_founded" : datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            "num_employees" : -6,
+            "industry": "SR",
+            "email" : "re@re.com",
+        }
+        id = self.b1.pk
+        url = f"http://127.0.0.1:8000/startups/{id}/"
+
+        response = self.client.post(url, objToSend, format="json")
+
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #How do I assert that no business object was created
+
+    def test_unsuccessful_reg_negative_num_employees(self):    
+        
+        token = Token.objects.get_or_create(user=self.user)
+        token2 = str(token[0])
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
+        objToSend = {
+            "name" : "Bloom Inc",
+            "founders" : "team50",
+            "description" : "Bloom is a platform for start-ups",
+            "date_founded" : datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            "num_employees" : -6,
+            "industry": "SR",
+            "email" : "re@re.com",
+        }
+        id = self.b1.pk
+        url = f"http://127.0.0.1:8000/startups/{id}/"
+
+        response = self.client.post(url, objToSend, format="json")
+
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
+    #Not sure how useful this test is since it is already checked by,existing email test
+    def test_unsuccessful_business_already_exists(self):    
+        
+        token = Token.objects.get_or_create(user=self.user)
+        token2 = str(token[0])
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
+        objToSend = {
+            "name" : "Recycle",
+            "founders" : "team50",
+            "description" : "Recycle is a platform for recycling",
+            "date_founded" : datetime.strptime("2022-02-25", "%Y-%m-%d"),
+            "num_employees" : 6,
+            "industry" : "SR",
+            "email" : "re@re.com"
+        }
+        id = self.b1.pk
+        url = f"http://127.0.0.1:8000/startups/{id}/"
+
+        response = self.client.post(url, objToSend, format="json")
+
+        self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
