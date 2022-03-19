@@ -92,7 +92,7 @@ test-job:   # This job runs in the test stage.
 
 
 deploy-django:
-  image: ruby:latest
+  image: ruby
   stage: deploy
   before_script:
     - gem install dpl
