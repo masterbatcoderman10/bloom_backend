@@ -62,6 +62,7 @@ variables:
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
+  - deploy
     
 
 build-job:       # This job runs in the build stage, which runs first.
@@ -90,7 +91,7 @@ test-job:   # This job runs in the test stage.
     - python manage.py test
 
 
-deploy:
+deploy-django:
   image: ruby
   stage: deploy
   before_script:
