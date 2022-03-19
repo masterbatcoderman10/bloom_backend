@@ -96,6 +96,8 @@ deploy-django:
   stage: deploy
   before_script:
     - gem install dpl
+    - sudo apt-get install python-tk python3-tk tk-dev
+    
   script:
     - cd backend
     - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
