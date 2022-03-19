@@ -445,14 +445,14 @@ class BusinessPosyTests(APITestCase):
         self.user = User.objects.create_user(email='first@first.com', password='Pa$5word', username='firstUser')
         Token.objects.create(user=self.user)
         self.b1 = Business.objects.create(
-            # user=self.user,
-            # name="Bloom",
-            # founders="team50",
-            # description="Bloom is a platform for start-ups",
-            # date_founded= datetime.strptime("2022-02-20", "%Y-%m-%d"),
-            # num_employees=6,
-            # industry="SR",
-            # email="bloom@bloom.com"
+            user=self.user,
+            name="Bloom",
+            founders="team50",
+            description="Bloom is a platform for start-ups",
+            date_founded= datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            num_employees=6,
+            industry="SR",
+            email="bloom@bloom.com"
         )
         
         Business.objects.create(
@@ -466,16 +466,7 @@ class BusinessPosyTests(APITestCase):
             email="re@re.com"
         )
 
-        self.b3 = Business.objects.create(
-            user = self.user2,
-            name="TestBusiness",
-            founders="team500",
-            description="This is a test startup",
-            date_founded= datetime.strptime("2022-01-20", "%Y-%m-%d"),
-            num_employees=10,
-            industry="SR",
-            email="test@test.com"
-        )
+        
     
     def test_successful_registration(self):    
         
@@ -486,19 +477,19 @@ class BusinessPosyTests(APITestCase):
             "name" : "Bloom Inc",
             "founders" : "team50",
             "description" : "Bloom is a platform for start-ups",
-            "date_founded" : datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            "date_founded" : "2022-02-20",
             "num_employees" :6,
             "industry": "SR",
-            "email" : "bloom@bloom.com"
+            "email" : "bloom2@bloom.com"
         }
         id = self.b1.pk
-        url = f"http://127.0.0.1:8000/startups/{id}/"
+        url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "Bloom")
-        self.assertEquals(bloom.email, "bloom@bloom.com")
+        self.assertEquals(bloom.name, "Bloom Inc")
+        self.assertEquals(bloom.email, "bloom2@bloom.com")
         self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
         self.assertEquals(bloom.founders, "team50")
         self.assertEquals(bloom.industry, "SR")
@@ -520,7 +511,7 @@ class BusinessPosyTests(APITestCase):
             "email" : "re@re.com",
         }
         id = self.b1.pk
-        url = f"http://127.0.0.1:8000/startups/{id}/"
+        url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
@@ -542,7 +533,7 @@ class BusinessPosyTests(APITestCase):
             "email" : "re@re.com",
         }
         id = self.b1.pk
-        url = f"http://127.0.0.1:8000/startups/{id}/"
+        url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
@@ -564,7 +555,7 @@ class BusinessPosyTests(APITestCase):
             "email" : "re@re.com",
         }
         id = self.b1.pk
-        url = f"http://127.0.0.1:8000/startups/{id}/"
+        url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
@@ -586,7 +577,7 @@ class BusinessPosyTests(APITestCase):
             "email" : "re@re.com"
         }
         id = self.b1.pk
-        url = f"http://127.0.0.1:8000/startups/{id}/"
+        url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
