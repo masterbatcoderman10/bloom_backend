@@ -474,7 +474,7 @@ class BusinessPosyTests(APITestCase):
         token2 = str(token[0])
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
         objToSend = {
-            "name" : "Bloom Inc",
+            "name" : "Bloom",
             "founders" : "team50",
             "description" : "Bloom is a platform for start-ups",
             "date_founded" : "2022-02-20",
@@ -482,14 +482,13 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "bloom2@bloom.com"
         }
-        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "Bloom Inc")
-        self.assertEquals(bloom.email, "bloom2@bloom.com")
+        bloom = Business.objects.get(email="bloom@bloom.com")
+        self.assertEquals(bloom.name, "Bloom")
+        self.assertEquals(bloom.email, "bloom@bloom.com")
         self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
         self.assertEquals(bloom.founders, "team50")
         self.assertEquals(bloom.industry, "SR")
@@ -510,7 +509,6 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "re@re.com",
         }
-        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
@@ -532,7 +530,6 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "re@re.com",
         }
-        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
@@ -554,7 +551,6 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "re@re.com",
         }
-        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
@@ -576,7 +572,6 @@ class BusinessPosyTests(APITestCase):
             "industry" : "SR",
             "email" : "re@re.com"
         }
-        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
