@@ -129,7 +129,8 @@ deploy-react:
     name: production
     url: bloom.bham.team
   script:
-    - bash front-end/bloom_website/deploy.sh
+    - cd front-end/bloom_website/
+    - bash deploy.sh
   only:
     - main
 
