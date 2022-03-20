@@ -495,7 +495,7 @@ class BusinessPosyTests(APITestCase):
 
         response = self.client.post(url, objToSend, format="json")
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        bloom = Business.objects.get(pk=id)
+        bloom = Business.objects.get(email="bloom@bloom.com")
         self.assertEquals(bloom.name, "Bloom")
         self.assertEquals(bloom.email, "bloom@bloom.com")
         self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
