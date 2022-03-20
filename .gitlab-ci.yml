@@ -109,6 +109,27 @@ deploy-django:
     name: main
     url: $HEROKU_APP_HOST
 
+  
+
+deploy-react:
+  image: node
+  stage: deploy
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq git
+    - "which ssh-agent || ( apt-get install -qq openssh-client )"
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  environment:
+    name: production
+    url: bloom.bham.team
+  script:
+    - bash front-end/bloom_website/deploy.sh
+  only:
+    - main
+
 
 
 
