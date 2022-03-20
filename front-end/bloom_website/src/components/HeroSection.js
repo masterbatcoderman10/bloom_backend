@@ -3,6 +3,7 @@ import '../App.css';
 import { Button } from './Button';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import './HeroSection.css';
+import "./Navbar.css";
 
 function HeroSection() {
   const navigate = useNavigate();
@@ -14,8 +15,8 @@ function HeroSection() {
       <p>Register with us today!</p>
       <div className='hero-btns'>
         <button
-          className='btns sign-in'
-          
+          className='btn sign-in'
+          id="sign-in-btn"
           onClick={() => navigate("/register")}
         >
           Get started

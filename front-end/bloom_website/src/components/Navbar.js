@@ -6,7 +6,7 @@ import "./Navbar.css";
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -71,7 +71,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <button className={`btn`} id="sign-in-btn" onClick={() => handleNav}>SIGN-IN</button>
+          <button className={`btn`} id="sign-in-btn" onClick={() => navigate("/login")}>SIGN-IN</button>
           
         </div>
       </nav>
