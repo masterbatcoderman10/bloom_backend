@@ -13,14 +13,13 @@ function HeroSection() {
       <h1 >YOUR ONE-STOP SHOP FOR ALL YOUR BUSINESS NEEDS</h1>
       <p>Register with us today!</p>
       <div className='hero-btns'>
-        <Button
+        <button
           className='btns sign-in'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
+          
           onClick={() => navigate("/register")}
         >
           Get started
-        </Button>
+        </button>
       </div>
     </div>
   );

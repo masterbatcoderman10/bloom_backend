@@ -71,7 +71,8 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline" onClick={() => handleNav}>LOGIN</Button>}
+          <button className={`btn`} id="sign-in-btn" onClick={() => handleNav}>SIGN-IN</button>
+          
         </div>
       </nav>
     </>
