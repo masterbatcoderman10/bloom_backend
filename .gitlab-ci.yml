@@ -114,6 +114,8 @@ deploy-django:
 deploy-react:
   image: node
   stage: deploy
+  tags:
+    - ruby
   before_script:
     - apt-get update -qq
     - apt-get install -qq git
