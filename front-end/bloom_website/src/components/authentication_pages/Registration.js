@@ -36,7 +36,7 @@ export default function Registration() {
     }
 
     axios
-    .post("http://127.0.0.1:8000/authentication/register/", objToSend)
+    .post("https://bloom-rest.herokuapp.com/authentication/register/", objToSend)
     .then(function (response) {
       localStorage.setItem("token", JSON.stringify(response.data.token));
       document.querySelector("label.information").innerHTML = "Registration Successful"
