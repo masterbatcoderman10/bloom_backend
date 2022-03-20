@@ -5,7 +5,7 @@ SERVER_FOLDER=$SERVER_FOLDER
 
 # Building React output
 npm install
-npm run build
+#npm run build
 
 echo "Deploying to ${DEPLOY_SERVER}"
 #scp -r build/ root@${DEPLOY_SERVER}:/var/www/${SERVER_FOLDER}/html
