@@ -71,7 +71,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline" onClick={handleNav}>SIGN IN</Button>}
+          {button && <Button buttonStyle="btn--outline" onClick={() => handleNav}>LOGIN</Button>}
         </div>
       </nav>
     </>

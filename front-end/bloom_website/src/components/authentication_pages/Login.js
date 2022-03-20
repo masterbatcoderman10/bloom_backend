@@ -73,7 +73,7 @@ export default function Login(e) {
                     Sign-In
                 </button>
                 <hr className="split-hr" />
-                <button className="btn btn-primary">
+                <button className="btn btn-primary" onClick={() => navigate("/register")}>
                     Sign-Up
                 </button>
                 </form>

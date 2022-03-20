@@ -14,7 +14,7 @@ function HeroSection() {
       <p>Register with us today!</p>
       <div className='hero-btns'>
         <Button
-          className='btns'
+          className='btns sign-in'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
           onClick={() => navigate("/register")}
