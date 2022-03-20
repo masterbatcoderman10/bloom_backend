@@ -1,5 +1,5 @@
 import datetime
-from turtle import st
+
 from django.http import QueryDict
 from django.shortcuts import render
 
