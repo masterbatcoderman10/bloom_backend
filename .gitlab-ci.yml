@@ -114,9 +114,12 @@ deploy-django:
 deploy-react:
   image: node
   stage: deploy
+  tags:
+    - ruby
   before_script:
     - apt-get update -qq
     - apt-get install -qq git
+    - apt install nodejs npm -y
     - "which ssh-agent || ( apt-get install -qq openssh-client )"
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
@@ -126,7 +129,8 @@ deploy-react:
     name: production
     url: bloom.bham.team
   script:
-    - bash front-end/bloom_website/deploy.sh
+    - cd front-end/bloom_website/
+    - bash deploy.sh
   only:
     - main
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
+  const navigate = useNavigate();
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -21,6 +21,10 @@ function Navbar() {
   useEffect(() => {
     showButton();
   }, []);
+
+  function handleNav() {
+    navigate("/login");
+  }
 
   window.addEventListener("resize", showButton);
 
@@ -67,7 +71,8 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">SIGN IN</Button>}
+          <button className={`btn`} id="sign-in-btn" onClick={() => navigate("/login")}>SIGN-IN</button>
+          
         </div>
       </nav>
     </>

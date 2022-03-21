@@ -22,7 +22,7 @@ export default function Login(e) {
 
     if (emailVar && passwordVar) {
       axios
-        .post("http://127.0.0.1:8000/authentication/login/", obj)
+        .post("https://bloom-rest.herokuapp.com/authentication/login/", obj)
         .then(function (response) {
           console.log(response.data);
           localStorage.setItem("token", JSON.stringify(response.data.token));
@@ -73,7 +73,7 @@ export default function Login(e) {
                     Sign-In
                 </button>
                 <hr className="split-hr" />
-                <button className="btn btn-primary">
+                <button className="btn btn-primary" onClick={() => navigate("/register")}>
                     Sign-Up
                 </button>
                 </form>
