@@ -8,9 +8,13 @@ import "./Login.css"
 export default function Login(e) {
   
   const navigate = useNavigate();
-
+  let loading = false;
   function login(e) {
 
+    loading = true;
+    if (loading) {
+      document.querySelector(".information").innerHTML = "Loading"
+    }
     e.preventDefault();
     const emailVar = document.querySelector(".email").value;
     const passwordVar = document.querySelector(".password").value;
@@ -26,7 +30,8 @@ export default function Login(e) {
         .then(function (response) {
           console.log(response.data);
           localStorage.setItem("token", JSON.stringify(response.data.token));
-          
+          loading = false;
+          navigate("/startups");
           
         })
         .catch((error) =>  {

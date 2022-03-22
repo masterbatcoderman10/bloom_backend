@@ -40,6 +40,7 @@ export default function Registration() {
     .then(function (response) {
       localStorage.setItem("token", JSON.stringify(response.data.token));
       document.querySelector("label.information").innerHTML = "Registration Successful"
+      navigate("/startups");
     }).catch(error => console.log(error))
 
 
