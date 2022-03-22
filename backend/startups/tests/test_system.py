@@ -116,7 +116,7 @@ class SystemTest(APITestCase):
         self.assertEquals(response.json()["founders"], "Ali, Abdullah, Anissha, Isra, Mohammed Ali")
         self.assertEquals(response.json()["industry"], "TR")
         self.assertEquals(response.json()["num_employees"], 5)
-        self.assertEquals(response.json()["date_founded"], "2022-02-20")
+        self.assertEquals(response.json()["date_founded"], "2022-01-31")
 
 
         
