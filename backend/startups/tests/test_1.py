@@ -1,9 +1,11 @@
 import email
 import imp
 from unicodedata import name
-from .models import Business
-from .views import BusinessListView
-from .views import BusinessDetailView
+
+from django import views
+from ..models import Business
+from ..views import BusinessListView
+from ..views import BusinessDetailView
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
@@ -438,7 +440,7 @@ class BusinessPutTests(APITestCase):
         self.assertEquals(bloom.date_founded, datetime.strptime("2022-01-20", "%Y-%m-%d").date())
 
         
-class BusinessPosyTests(APITestCase):
+class BusinessPostTests(APITestCase):
 
     def setUp(self):
 
@@ -455,7 +457,7 @@ class BusinessPosyTests(APITestCase):
             email="bloom@bloom.com"
         )
         
-        Business.objects.create(
+        self.b2 = Business.objects.create(
             user=self.user,
             name="Recycle",
             founders="team50",
@@ -474,7 +476,7 @@ class BusinessPosyTests(APITestCase):
         token2 = str(token[0])
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
         objToSend = {
-            "name" : "Bloom",
+            "name" : "Bloom Inc",
             "founders" : "team50",
             "description" : "Bloom is a platform for start-ups",
             "date_founded" : "2022-02-20",
@@ -482,18 +484,16 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "bloom2@bloom.com"
         }
+        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        bloom = Business.objects.get(email="bloom@bloom.com")
-        self.assertEquals(bloom.name, "Bloom")
-        self.assertEquals(bloom.email, "bloom@bloom.com")
-        self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
-        self.assertEquals(bloom.founders, "team50")
-        self.assertEquals(bloom.industry, "SR")
-        self.assertEquals(bloom.num_employees, 6)
-        self.assertEquals(bloom.date_founded, datetime.strptime("2022-02-20", "%Y-%m-%d").date())
+        bloom = Business.objects.get(pk=id)
+        #test that the number of businesses for the user has increased by one.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 3)
+        
 
     def test_unsuccessful_reg_email_already_exists(self):    
         
@@ -509,11 +509,15 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "re@re.com",
         }
+        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
         #How do I assert that no business object was created
     
     def test_unsuccessful_reg_negative_num_employees(self):    
@@ -530,11 +534,15 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "re@re.com",
         }
+        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
         #How do I assert that no business object was created
 
     def test_unsuccessful_reg_negative_num_employees(self):    
@@ -551,11 +559,15 @@ class BusinessPosyTests(APITestCase):
             "industry": "SR",
             "email" : "re@re.com",
         }
+        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
     
     #Not sure how useful this test is since it is already checked by,existing email test
     def test_unsuccessful_business_already_exists(self):    
@@ -572,8 +584,12 @@ class BusinessPosyTests(APITestCase):
             "industry" : "SR",
             "email" : "re@re.com"
         }
+        id = self.b1.pk
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
