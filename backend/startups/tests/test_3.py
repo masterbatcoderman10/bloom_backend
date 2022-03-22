@@ -60,14 +60,14 @@ class BusinessGetTestsSpecific(APITestCase):
 
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "Bloom")
-        self.assertEquals(bloom.email, "bloom@bloom.com")
-        self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
-        self.assertEquals(bloom.founders, "team50")
-        self.assertEquals(bloom.industry, "SR")
-        self.assertEquals(bloom.num_employees, 6)
-        self.assertEquals(bloom.date_founded, datetime.strptime("2022-02-20", "%Y-%m-%d").date())
+        
+        self.assertEquals(response.json()["name"], "Bloom")
+        self.assertEquals(response.json()["email"], "bloom@bloom.com")
+        self.assertEquals(response.json()["description"], "Bloom is a platform for start-ups")
+        self.assertEquals(response.json()["founders"], "team50")
+        self.assertEquals(response.json()["industry"], "SR")
+        self.assertEquals(response.json()["num_employees"], 6)
+        self.assertEquals(response.json()["date_founded"], "2022-02-20")
 
     def test_unsuccessful_not_authorized(self):
 

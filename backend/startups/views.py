@@ -42,6 +42,8 @@ class BusinessListView(APIView):
         businesses = Business.objects.filter(user=request.user)
         serializer = BusinessSerializer(businesses, many=True)
 
+        
+
         return Response(serializer.data, status.HTTP_200_OK)
 
     def post(self, request):
@@ -88,7 +90,7 @@ class BusinessListView(APIView):
             data["message"] = "registration successful"
             #Sending a new token after successful registration
             #data["new_business"] = new_business
-            
+            data["id"] = new_business.pk
             return Response(data, status.HTTP_200_OK)
             
         else:
@@ -106,8 +108,12 @@ class BusinessDetailView(APIView):
     def get(self, request, pk):
         data = {}
 
-        
-        business = Business.objects.get(pk=pk)
+        try: 
+            business = Business.objects.get(pk=pk)
+        except Business.DoesNotExist:
+
+            data["message"] = "Business does not exist"
+            return Response(data, status.HTTP_400_BAD_REQUEST)
         
         if request.user != business.user:
             data["message"] = "Not authorized"
@@ -245,7 +251,7 @@ class BusinessDetailView(APIView):
 
             data["message"] = "Business requested does not exist"
             #Returning response
-            return Response(data, status.HTTP_204_NO_CONTENT)
+            return Response(data, status.HTTP_400_BAD_REQUEST)
         
         
         

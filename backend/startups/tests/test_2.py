@@ -51,7 +51,7 @@ class BusinessGetTestsAll(APITestCase):
         )
 
         self.b3 = Business.objects.create(
-            user = self.user2,
+            user = self.user,
             name= "TestBusiness",
             founders="testers",
             description="This is a test business",
@@ -73,16 +73,32 @@ class BusinessGetTestsAll(APITestCase):
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         
-        self.assertEquals(len(response.json()), 2)
+        self.assertEquals(len(response.json()), 3)
 
     def test_unsuccessful_not_authorized(self):
 
-        id = self.b3.pk
+        
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.get(url, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
+    
+    def test_get_no_businesses(self):
+        
+        token = Token.objects.get_or_create(user=self.user2)
+        token2 = str(token[0])
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
+
+        url = f"http://127.0.0.1:8000/startups/"
+
+        response = self.client.get(url, format="json")
+
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+        self.assertEquals(len(response.json()), 0)
+
+
+
         
         
 
