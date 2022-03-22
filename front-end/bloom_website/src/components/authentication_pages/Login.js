@@ -74,11 +74,11 @@ export default function Login(e) {
                     placeholder="Password"
                     />
                 </div>
-                <button className="btn btn-primary" onClick={e => login(e)}>
+                <button className="btn btn-primary" id="login" onClick={e => login(e)}>
                     Sign-In
                 </button>
                 <hr className="split-hr" />
-                <button className="btn btn-primary" onClick={() => navigate("/register")}>
+                <button className="btn btn-primary" id="sign-up" onClick={() => navigate("/register")}>
                     Sign-Up
                 </button>
                 </form>

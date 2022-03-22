@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Button } from './Button';
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
 
 function HeroSection() {

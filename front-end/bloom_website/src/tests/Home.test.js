@@ -21,10 +21,37 @@ describe('Home Page', () => {
   jest.setTimeout(30000)
   test('Get Started button takes to the registration page', async () => {
     
-    await page.goto(`${appUrlBase}/`)
+    await page.goto(`${appUrlBase}/`);
+    await page.waitForSelector(".btn.sign-in");
+
+    const btnText = await page.evaluate(() => document.querySelector(".btn.sign-in").innerText)
+
+    expect(btnText).toEqual("Get started")
     
-    
-    
+  })
+
+  test("Getting started button takes to the sign up page", async () => {
+
+    await page.goto(`${appUrlBase}/`);
+    await page.click(".btn.sign-in");
+    await page.waitForSelector("h2")
+
+    const heading = await page.evaluate(() => document.querySelector("h2").innerText)
+
+    expect(heading).toEqual("Sign Up")
+
+  })
+
+  test("Test navbar button directs to the sign in page.", async () => {
+
+    await page.goto(`${appUrlBase}/`);
+    await page.click("nav>div>button");
+    await page.waitForSelector("h2")
+
+    const heading = await page.evaluate(() => document.querySelector("h2").innerText)
+
+    expect(heading).toEqual("Sign In")
+
 
   })
 
