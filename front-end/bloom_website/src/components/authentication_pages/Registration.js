@@ -34,10 +34,10 @@ export default function Registration() {
       email : emailT,
       password : password1
     }
-
+    
     axios
     .post("https://bloom-rest.herokuapp.com/authentication/register/", objToSend)
-    .then(function (response) {
+    .then((response) => {
       localStorage.setItem("token", JSON.stringify(response.data.token));
       document.querySelector("label.information").innerHTML = "Registration Successful"
       navigate("/startups");
