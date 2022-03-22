@@ -77,14 +77,8 @@ class BusinessGetTestsSpecific(APITestCase):
         response = self.client.get(url, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "TestBusiness")
-        self.assertEquals(bloom.email, "test@test.com")
-        self.assertEquals(bloom.description, "This is a test startup")
-        self.assertEquals(bloom.founders, "team500")
-        self.assertEquals(bloom.industry, "SR")
-        self.assertEquals(bloom.num_employees, 10)
-        self.assertEquals(bloom.date_founded, datetime.strptime("2022-01-20", "%Y-%m-%d").date())
+        
+        
 
     def test_unsuccessful_incorrect_account(self):
 
@@ -94,17 +88,10 @@ class BusinessGetTestsSpecific(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
        
         id = self.b3.pk
-        url = f"http://127.0.0.1:8000/startups/{id}"
+        url = f"http://127.0.0.1:8000/startups/{id}/"
 
         response = self.client.get(url, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "TestBusiness")
-        self.assertEquals(bloom.email, "test@test.com")
-        self.assertEquals(bloom.description, "This is a test startup")
-        self.assertEquals(bloom.founders, "team500")
-        self.assertEquals(bloom.industry, "SR")
-        self.assertEquals(bloom.num_employees, 10)
-        self.assertEquals(bloom.date_founded, datetime.strptime("2022-01-20", "%Y-%m-%d").date())
+        self.assertEquals(response.json()["message"], "Not authorized")
     

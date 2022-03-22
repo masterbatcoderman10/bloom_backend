@@ -30,44 +30,50 @@ class BusinessGetTestsAll(APITestCase):
         
         self.b1 = Business.objects.create(
             user=self.user,
-            name1="Bloom"
-            #founders="team50",
-            #description="Bloom is a platform for start-ups",
-            #date_founded= datetime.strptime("2022-02-20", "%Y-%m-%d"),
-            #num_employees=6,
-            #industry="SR",
-            #email="bloom@bloom.com"
+            name="Bloom",
+            founders="team50",
+            description="Bloom is a platform for start-ups",
+            date_founded= datetime.strptime("2022-02-20", "%Y-%m-%d"),
+            num_employees=6,
+            industry="SR",
+            email="bloom@bloom.com"
         )
 
-        #self.b2 = Business.objects.create(
-           # user=self.user,
-            #name="Recycle"
-            #founders="team50",
-            #description="Recycle is a platform for recycling",
-            #date_founded= datetime.strptime("2022-02-25", "%Y-%m-%d"),
-            #num_employees=6,
-            #industry="SR",
-            #email="re@re.com"
-       # )
+        self.b2 = Business.objects.create(
+           user=self.user,
+            name="Recycle",
+            founders="team50",
+            description="Recycle is a platform for recycling",
+            date_founded= datetime.strptime("2022-02-25", "%Y-%m-%d"),
+            num_employees=6,
+            industry="SR",
+            email="re@re.com"
+        )
 
         self.b3 = Business.objects.create(
             user = self.user2,
-            name= "TestBusiness"
+            name= "TestBusiness",
+            founders="testers",
+            description="This is a test business",
+            date_founded=datetime.strptime("2022-02-25", "%Y-%m-%d"),
+            num_employees=5,
+            industry="SR",
+            email="tester@testre.com"
         )
-
+ 
     def test_successful_authorization(self):
 
         token = Token.objects.get_or_create(user=self.user)
         token2 = str(token[0])
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
 
-        id = self.b1.pk
+        
         url = f"http://127.0.0.1:8000/startups/"
 
         response = self.client.get(url, format='json')
         self.assertEquals(response.status_code, status.HTTP_200_OK)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "Bloom")
+        
+        self.assertEquals(len(response.json()), 2)
 
     def test_unsuccessful_not_authorized(self):
 
@@ -77,23 +83,10 @@ class BusinessGetTestsAll(APITestCase):
         response = self.client.get(url, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "TestBusiness")
-
-    def test_unsuccessful_incorrect_account(self):
-
-        token = Token.objects.get_or_create(user=self.user)
-        token2 = str(token[0])
         
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token2)
-       
-        id = self.b3.pk
-        url = f"http://127.0.0.1:8000/startups/"
+        
 
-        response = self.client.get(url, format="json")
-
-        self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "TestBusiness")
+    
+        
 
 

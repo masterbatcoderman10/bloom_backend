@@ -457,7 +457,7 @@ class BusinessPostTests(APITestCase):
             email="bloom@bloom.com"
         )
         
-        Business.objects.create(
+        self.b2 = Business.objects.create(
             user=self.user,
             name="Recycle",
             founders="team50",
@@ -490,13 +490,10 @@ class BusinessPostTests(APITestCase):
         response = self.client.post(url, objToSend, format="json")
         self.assertEquals(response.status_code, status.HTTP_200_OK)
         bloom = Business.objects.get(pk=id)
-        self.assertEquals(bloom.name, "Bloom Inc")
-        self.assertEquals(bloom.email, "bloom2@bloom.com")
-        self.assertEquals(bloom.description, "Bloom is a platform for start-ups")
-        self.assertEquals(bloom.founders, "team50")
-        self.assertEquals(bloom.industry, "SR")
-        self.assertEquals(bloom.num_employees, 6)
-        self.assertEquals(bloom.date_founded, datetime.strptime("2022-02-20", "%Y-%m-%d").date())
+        #test that the number of businesses for the user has increased by one.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 3)
+        
 
     def test_unsuccessful_reg_email_already_exists(self):    
         
@@ -518,6 +515,9 @@ class BusinessPostTests(APITestCase):
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
         #How do I assert that no business object was created
     
     def test_unsuccessful_reg_negative_num_employees(self):    
@@ -540,6 +540,9 @@ class BusinessPostTests(APITestCase):
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
         #How do I assert that no business object was created
 
     def test_unsuccessful_reg_negative_num_employees(self):    
@@ -562,6 +565,9 @@ class BusinessPostTests(APITestCase):
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
     
     #Not sure how useful this test is since it is already checked by,existing email test
     def test_unsuccessful_business_already_exists(self):    
@@ -584,3 +590,6 @@ class BusinessPostTests(APITestCase):
         response = self.client.post(url, objToSend, format="json")
 
         self.assertEquals(response.status_code, status.HTTP_400_BAD_REQUEST)
+        #Test the number of businesses hasn't changed.
+        all_businesses = Business.objects.filter(user=self.user)
+        self.assertEquals(len(all_businesses), 2)
