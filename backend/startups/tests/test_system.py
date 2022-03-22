@@ -123,7 +123,7 @@ class SystemTest(APITestCase):
         
         #Deleting the business
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + res_token_log)
-        id = response.json()[0]["id"]
+        id = response.json()["id"]
 
         url = f"http://127.0.0.1:8000/startups/{id}/"
 
