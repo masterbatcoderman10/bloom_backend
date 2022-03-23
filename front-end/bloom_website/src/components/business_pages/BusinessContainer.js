@@ -5,18 +5,17 @@ import axios from "axios";
 import {Button} from "../Button"
 import './BusinessContainer.css'
 import BusinessCard from "./BusinessCard";
+import BusinessHolder from "./BusinessHolder"
+
 export default function BusinessContainer() {
 
     const [startups, setStartups] = useState([]);
-    const loading = true;
+    const [isLoading, setLoading] = useState(true);
     const url = "https://bloom-rest.herokuapp.com/startups/"
 
     useEffect(() => {
 
-        const loading = true;
-        if (loading) {
-            
-        }
+
 
         const token = JSON.parse(localStorage.getItem("token"));
         axios
@@ -25,7 +24,11 @@ export default function BusinessContainer() {
             Authorization: `Token ${token}`,
             },
         })
-        .then((response) => setStartups(response.data))
+        .then((response) => {
+            
+            setStartups(response.data);
+            setLoading(false);
+        })
         .catch((error) => console.log(error));
 
     }, [setStartups])
@@ -42,9 +45,12 @@ export default function BusinessContainer() {
                     <Button>Add a Business</Button>
                 </div>
                 <hr className="simple"></hr>
-                <div className="col-lg-12 busi-container">
+                {/* <div className="col-lg-12 busi-container">
                     {renderItems()}
-                </div>
+                </div> */
+                    <BusinessHolder isLoading={isLoading} startups={startups}/>
+                
+                }
             </div>
         </div>
     )
