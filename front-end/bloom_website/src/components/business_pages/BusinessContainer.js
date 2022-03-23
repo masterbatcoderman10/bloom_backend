@@ -6,8 +6,17 @@ import {Button} from "../Button"
 import './BusinessContainer.css'
 export default function BusinessContainer() {
 
-    const [startups, setStartup] = useState([]);
+    const [startups, setStartups] = useState([]);
     const loading = true;
+    const url = "https://bloom-rest.herokuapp.com/startups/"
+
+    useEffect(() => {
+
+        
+
+    }, [setStartups])
+
+
 
     return (
         <div className="container">
