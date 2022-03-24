@@ -85,7 +85,7 @@ build-job:
   script:
     - cd front-end/bloom_website/
     - npm install
-    - npm build
+    - npm run build
   artifacts:
     paths:
       - front-end/bloom_website/
