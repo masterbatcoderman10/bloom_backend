@@ -2,7 +2,7 @@ import React from "react";
 import "./IntroCard.css";
 
 export default function IntroCardRev(props) {
-  console.log(props);
+  
   return (
     <div className="col-lg-12 intro">
       <div className="row">

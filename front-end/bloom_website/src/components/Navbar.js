@@ -10,6 +10,19 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+  function checkSignedIn() {
+    const token = localStorage.getItem('token');
+    return token ? <button className={`btn`} id="sign-in-btn" onClick={() => 
+      {
+      
+      localStorage.removeItem('token');
+      console.log("broken?")
+      navigate("/")
+    }}>SIGN-OUT</button> :
+    <button className={`btn`} id="sign-in-btn" onClick={() => navigate("/login")}>SIGN-IN</button>
+     
+  }
+
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -53,7 +66,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/dashboard"
+                to="/startups"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
@@ -71,7 +84,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <button className={`btn`} id="sign-in-btn" onClick={() => navigate("/login")}>SIGN-IN</button>
+          {checkSignedIn()}
           
         </div>
       </nav>
