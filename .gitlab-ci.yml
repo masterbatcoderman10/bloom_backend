@@ -98,6 +98,23 @@ test-job:   # This job runs in the test stage.
       - .git
 
 
+test-job: 
+  image: node  # This job runs in the test stage.
+  stage: test    # It only starts when the job in the build stage completes successfully.
+  tags:
+    - ruby
+  script:
+    - cd front-end/bloom_website
+    - npm install
+    - npm test
+    #- sleep 6    
+  artifacts:
+    paths: 
+      - front-end/bloom_website
+    exclude:
+      - .git
+
+
 deploy-django:
   image: ruby
   stage: deploy
