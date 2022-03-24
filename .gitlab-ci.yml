@@ -79,9 +79,11 @@ stages:
 
 build-job:
   image: node
+  stage: build
   tags:
     - ruby
   script:
+    - cd front-end/bloom_website/
     - npm install
     - npm build
   artifacts:
