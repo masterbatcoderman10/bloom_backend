@@ -31,7 +31,7 @@ export default function Registration() {
       console.log(password2);
       return -1;
     }
-    if (!(user || password1 || password2 || emailT)) {
+    if (!(user && password1 && password2 && emailT)) {
       document.querySelector("label.information").innerHTML = "Missing field";
       return -1;
     }
