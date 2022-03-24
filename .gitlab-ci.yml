@@ -36,14 +36,14 @@
 default:
   image: python
 
-before_script:
-  - apt -y update && apt install -y gcc
-  - apt -y install apt-utils
-  - apt-get install -y postgresql postgresql-client libpq-dev
-  - apt -y upgrade
-  - pip install --upgrade pip wheel  
-  - pip install -r backend/requirements.txt
-  - pip install django-cors-headers
+# before_script:
+#   - apt -y update && apt install -y gcc
+#   - apt -y install apt-utils
+#   - apt-get install -y postgresql postgresql-client libpq-dev
+#   - apt -y upgrade
+#   - pip install --upgrade pip wheel  
+#   - pip install -r backend/requirements.txt
+#   - pip install django-cors-headers
 
 services:
   - postgres
@@ -84,6 +84,15 @@ test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   tags:
     - ruby
+  before_script:
+    - apt -y update && apt install -y gcc
+    - apt -y install apt-utils
+    - apt-get install -y postgresql postgresql-client libpq-dev
+    - apt -y upgrade
+    - pip install --upgrade pip wheel  
+    - pip install -r backend/requirements.txt
+    - pip install django-cors-headers
+
   script:
     - cd backend
     - echo "Running unit tests... This will take about 60 seconds."
@@ -94,6 +103,23 @@ test-job:   # This job runs in the test stage.
   artifacts:
     paths: 
       - backend/
+    exclude:
+      - .git
+
+
+system-test: 
+  image: alekzonder/puppeteer  # This job runs in the test stage.
+  stage: test    # It only starts when the job in the build stage completes successfully.
+  tags:
+    - ruby
+  script:
+    - cd front-end/bloom_website
+    - npm install
+    - npm test
+    #- sleep 6    
+  artifacts:
+    paths: 
+      - front-end/bloom_website
     exclude:
       - .git
 
