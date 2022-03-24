@@ -114,6 +114,8 @@ system-test:
     - ruby
   script:
     - cd front-end/bloom_website
+    - npm install -g n
+    - n latest
     - npm install
     - npm test
     #- sleep 6    
