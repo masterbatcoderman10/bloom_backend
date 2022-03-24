@@ -84,7 +84,7 @@ test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   tags:
     - ruby
-  before-script:
+  before_script:
     - apt -y update && apt install -y gcc
     - apt -y install apt-utils
     - apt-get install -y postgresql postgresql-client libpq-dev
