@@ -56,7 +56,8 @@ variables:
   POSTGRES_PASSWORD: yrByQ4lRvFGolaKE
 
 
-stages:          # List of stages for jobs, and their order of execution
+stages:
+  - build          # List of stages for jobs, and their order of execution
   - test
   - deploy
     
@@ -75,12 +76,25 @@ stages:          # List of stages for jobs, and their order of execution
 #       - backend/
 #     exclude:
 #       - .git
-      
-        
+
+build-job:
+  image: node
+  stage: build
+  tags:
+    - ruby
+  script:
+    - cd front-end/bloom_website/
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - front-end/bloom_website/src/
+    exclude:
+      - .git  
     
       
 
-test-job:   # This job runs in the test stage.
+unit-integration-system-testing-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   tags:
     - ruby
@@ -103,23 +117,6 @@ test-job:   # This job runs in the test stage.
   artifacts:
     paths: 
       - backend/
-    exclude:
-      - .git
-
-
-system-test: 
-  image: alekzonder/puppeteer  # This job runs in the test stage.
-  stage: test    # It only starts when the job in the build stage completes successfully.
-  tags:
-    - ruby
-  script:
-    - cd front-end/bloom_website
-    - npm install
-    - npm test
-    #- sleep 6    
-  artifacts:
-    paths: 
-      - front-end/bloom_website
     exclude:
       - .git
 
