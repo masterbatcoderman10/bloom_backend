@@ -27,6 +27,7 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             
             <Route path="/startups" element={<BusinessContainer />}></Route>
+            
           </Route>
         </Routes>
         
