@@ -108,14 +108,12 @@ test-job:   # This job runs in the test stage.
 
 
 system-test: 
-  image: node  # This job runs in the test stage.
+  image: alekzonder/puppeteer  # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   tags:
     - ruby
   script:
     - cd front-end/bloom_website
-    - npm install -g n
-    - n latest
     - npm install
     - npm test
     #- sleep 6    
