@@ -88,7 +88,7 @@ build-job:
     - npm run build
   artifacts:
     paths:
-      - front-end/bloom_website/
+      - front-end/bloom_website/src/
     exclude:
       - .git  
     
