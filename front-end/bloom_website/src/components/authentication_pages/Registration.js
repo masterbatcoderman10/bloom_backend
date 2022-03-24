@@ -18,8 +18,15 @@ export default function Registration() {
     const password2 = document.getElementById("pass2").value;
     const emailT = document.getElementById("email").value;
 
+    if (password1.length < 8) {
+      document.getElementById("pass1").value = "";
+      document.getElementById("pass2").value = "";
+    }
+
     if (!(password1 === password2)) {
       document.querySelector("label.information").innerHTML = "Password's do not match";
+      document.getElementById("pass1").value = "";
+      document.getElementById("pass2").value = "";
       console.log(password1);
       console.log(password2);
       return -1;
@@ -41,7 +48,13 @@ export default function Registration() {
       localStorage.setItem("token", JSON.stringify(response.data.token));
       document.querySelector("label.information").innerHTML = "Registration Successful"
       navigate("/startups");
-    }).catch(error => console.log(error))
+    }).catch(error => {
+      
+      document.querySelector("label.information").innerHTML = "Registration Incomplete"
+      document.getElementById("pass1").value = "";
+      document.getElementById("pass2").value = "";
+      console.log(error)
+    })
 
 
 
@@ -75,6 +88,9 @@ export default function Registration() {
             <label className="indicator-lb">Reconfirm Password</label>
               <input id="pass2" type="password" className="form-control" placeholder="Password" />
             </div>
+            <ul>
+              <li>Password must be at least 8 characters long</li>
+            </ul>
             <button className="btn btn-primary" onClick={e => register(e)}>
                     Sign-Up
             </button>
