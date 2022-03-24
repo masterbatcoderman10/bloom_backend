@@ -44,7 +44,7 @@ export default function BusinessContainer() {
             <div className="row">
                 <div className="col-lg-12 top-nav">
                     <h1 className="heading">Your Businesses</h1>
-                    <Button onClick={() => navigate("/addStartup")}>Add a Business</Button>
+                    <Button  onClick={() => navigate("/addStartup")}>Add a Business</Button>
                 </div>
                 <hr className="simple"></hr>
                 {/* <div className="col-lg-12 busi-container">

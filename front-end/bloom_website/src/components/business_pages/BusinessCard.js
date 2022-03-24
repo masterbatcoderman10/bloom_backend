@@ -15,7 +15,7 @@ export default function BusinessCard(props) {
         <p className="desc">{props.details.description}</p>
       </div>
       <div className="btn-row">
-        <Button>View Details</Button>
+        <Button >View Details</Button>
 
       </div>
     </div>
