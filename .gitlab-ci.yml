@@ -98,7 +98,7 @@ test-job:   # This job runs in the test stage.
       - .git
 
 
-test-job: 
+system-test: 
   image: node  # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   tags:
