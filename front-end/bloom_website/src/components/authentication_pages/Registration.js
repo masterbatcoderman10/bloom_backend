@@ -8,9 +8,15 @@ import "./Registration.css"
 export default function Registration() {
 
   const navigate = useNavigate();
-
+  let loading = false;
 
   function register(e) {
+
+    
+    loading = true;
+    if (loading) {
+      document.querySelector(".information").innerHTML = "Loading"
+    }
 
     e.preventDefault();
     const user = document.getElementById("username").value; 

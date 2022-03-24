@@ -7,8 +7,10 @@ import "./Login.css"
 
 export default function Login(e) {
   
+  //Navigation function
   const navigate = useNavigate();
   let loading = false;
+  //Function which handles login
   function login(e) {
 
     loading = true;
@@ -23,12 +25,13 @@ export default function Login(e) {
       email: emailVar,
       password: passwordVar,
     }
-
+    //Query to the backend
     if (emailVar && passwordVar) {
       axios
         .post("https://bloom-rest.herokuapp.com/authentication/login/", obj)
         .then(function (response) {
           console.log(response.data);
+          //Setting the token
           localStorage.setItem("token", JSON.stringify(response.data.token));
           loading = false;
           navigate("/startups");
@@ -44,7 +47,7 @@ export default function Login(e) {
       document.querySelector(".information").innerHTML = "Do not leave any field blank"
     }
   }
-
+  //Html for the page
   return (
     <div className="container">
         <div className="row">
