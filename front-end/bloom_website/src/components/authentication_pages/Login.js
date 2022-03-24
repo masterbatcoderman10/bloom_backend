@@ -44,6 +44,7 @@ export default function Login(e) {
 
       
     } else {
+      // Print error message
       document.querySelector(".information").innerHTML = "Do not leave any field blank"
     }
   }
