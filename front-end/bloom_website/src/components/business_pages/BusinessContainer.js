@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {Button} from "../Button"
 import './BusinessContainer.css'
-import BusinessCard from "./BusinessCard";
+
 import BusinessHolder from "./BusinessHolder"
 
 export default function BusinessContainer() {
@@ -21,7 +21,7 @@ export default function BusinessContainer() {
 
         const token = JSON.parse(localStorage.getItem("token"));
         axios
-        .get("https://bloom-rest.herokuapp.com/startups/", {
+        .get(url, {
             headers: {
             Authorization: `Token ${token}`,
             },
@@ -35,9 +35,7 @@ export default function BusinessContainer() {
 
     }, [setStartups])
 
-    function renderItems() {
-        return startups.map(startup => <BusinessCard key={startup.id} details={startup} />)
-    }
+    
 
     return (
         <div className="container">

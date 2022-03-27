@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./Button";
+
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
@@ -35,9 +35,7 @@ function Navbar() {
     showButton();
   }, []);
 
-  function handleNav() {
-    navigate("/login");
-  }
+  
 
   window.addEventListener("resize", showButton);
 
