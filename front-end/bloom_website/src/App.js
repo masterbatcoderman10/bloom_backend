@@ -14,6 +14,7 @@ import ProtectedRoutes from './ProtectedRoutes';
 import Error from './components/pages/Error'
 import BusinessContainer from './components/business_pages/BusinessContainer';
 import BusReg from "./components/businessReg_pages/BusReg"
+import GDPR from "./components/authentication_pages/GDPR"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Registration />}></Route>
           <Route path="*" element={<Error />}></Route>
+          <Route path="/policy" element={<GDPR />}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>

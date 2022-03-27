@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "./Login.css";
@@ -9,14 +9,19 @@ export default function Registration() {
 
   const navigate = useNavigate();
   let loading = false;
+  const [accepted, setAccepted] = useState(false);
 
   function register(e) {
 
-    
-    loading = true;
-    if (loading) {
-      document.querySelector(".information").innerHTML = "Loading"
+
+
+    if (!(accepted)) {
+      document.querySelector(".information").innerHTML = "Please accept the policy.";
+      return -1;
     }
+
+    
+    
 
     e.preventDefault();
     const user = document.getElementById("username").value; 
@@ -27,6 +32,7 @@ export default function Registration() {
     if (password1.length < 8) {
       document.getElementById("pass1").value = "";
       document.getElementById("pass2").value = "";
+      return -1;
     }
 
     if (!(password1 === password2)) {
@@ -40,6 +46,11 @@ export default function Registration() {
     if (!(user && password1 && password2 && emailT)) {
       document.querySelector("label.information").innerHTML = "Missing field";
       return -1;
+    }
+
+    loading = true;
+    if (loading) {
+      document.querySelector(".information").innerHTML = "Loading"
     }
 
     const objToSend = {
@@ -97,6 +108,9 @@ export default function Registration() {
             <ul>
               <li>Password must be at least 8 characters long</li>
             </ul>
+            <label className="indicator-lb pr">Accept the privacy policy</label>
+            
+            <Link to="/policy" target="blank">View the privacy policy</Link>
             <button className="btn btn-primary" onClick={e => register(e)}>
                     Sign-Up
             </button>
