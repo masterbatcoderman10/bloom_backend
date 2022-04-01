@@ -3,7 +3,7 @@ import '../App.css';
 import { Button } from './Button';
 import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
-import bckground from "./home_bckgrnd.jpg";
+//import bckground from "./home_bckgrnd.jpg";
 
 
 
