@@ -7,7 +7,7 @@ import Login from "./components/authentication_pages/Login"
 import Registration from "./components/authentication_pages/Registration"
 
 import Footer from './components/Footer';
-
+import StartupPage from './components/business_pages/StartupPage';
 import ProtectedRoutes from './ProtectedRoutes';
 import Error from './components/pages/Error'
 import BusinessContainer from './components/business_pages/BusinessContainer';
@@ -28,6 +28,7 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>
+            <Route path="/startup/:startupID" element={<StartupPage />}></Route>
             
           </Route>
         </Routes>

@@ -1,10 +1,13 @@
 import "./BusinessCard.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "../Button";
 
 
 export default function BusinessCard(props) {
+
+  const navigate = useNavigate();
   console.log(props);
   return (
     <div className="col-lg-12 busi-holder" id={props.id}>
@@ -13,7 +16,7 @@ export default function BusinessCard(props) {
         <p className="desc">{props.details.description}</p>
       </div>
       <div className="btn-row">
-        <Button >View Details</Button>
+        <Button onClick={() => navigate(`/startup/${props.id}`)}>View Details</Button>
 
       </div>
     </div>
