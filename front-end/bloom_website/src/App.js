@@ -13,6 +13,7 @@ import Error from './components/pages/Error'
 import BusinessContainer from './components/business_pages/BusinessContainer';
 import BusReg from "./components/businessReg_pages/BusReg"
 import GDPR from "./components/authentication_pages/GDPR"
+import BusEdit from "./components/businessReg_pages/BusEdit"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>
             <Route path="/startup/:startupID" element={<StartupPage />}></Route>
+            <Route path="/editStartup/:startupID" element={<BusEdit />}></Route>
             
           </Route>
         </Routes>
