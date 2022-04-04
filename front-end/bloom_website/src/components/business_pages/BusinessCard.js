@@ -16,7 +16,7 @@ export default function BusinessCard(props) {
         <p className="desc">{props.details.description}</p>
       </div>
       <div className="btn-row">
-        <Button onClick={() => navigate(`/startup/${props.id}`)}>View Details</Button>
+        <Button onClick={() => navigate(`/startup/${props.details.id}`)}>View Details</Button>
 
       </div>
     </div>
