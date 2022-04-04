@@ -1,0 +1,41 @@
+.busi-holder.col-lg-12 {
+    border: 1px solid #fff8ef;
+    background-color: #fff8ef;
+    margin: 1% auto 0 auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 300px;
+    position:relative;
+  
+    
+}
+
+/* .busi-holder.col-lg-12:hover {
+    border: 1px solid #e0ceb9;
+    background-color: #e0ceb9;
+    margin: 1% auto 0 auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    width: 80%;
+    
+} */
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: 'Oxygen', sans-serif;
+}
+
+
+p {
+    font-family: 'Oxygen', sans-serif;
+    font-style: italic;
+}
+
+.primary-row {
+    margin-left: 2%;
+    display: inline-block;
+}
