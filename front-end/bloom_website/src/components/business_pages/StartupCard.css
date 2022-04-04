@@ -1,14 +1,21 @@
-.busi-holder.col-lg-12 {
+div.busi-holder {
     border: 1px solid #fff8ef;
     background-color: #fff8ef;
     margin: 1% auto 0 auto;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border-radius: 10px;
-    width: 100%;
+    border-radius: 2%; 
+    width: 70%;
     margin-bottom: 300px;
     position:relative;
+    padding: 0;
   
     
+}
+
+#card-img {
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    height: 70%;
 }
 
 /* .busi-holder.col-lg-12:hover {
@@ -39,3 +46,13 @@ p {
     margin-left: 2%;
     display: inline-block;
 }
+
+#desc-date-holder {
+    margin: 0;
+}
+
+span.desc-date {
+    margin: 0 2% 0 0;
+}
+
+

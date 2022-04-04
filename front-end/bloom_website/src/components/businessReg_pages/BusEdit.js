@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./BusReg.css";
 
-export default function BusinessRegistration() {
+export default function BusEdit() {
   //State initializations
   const navigate = useNavigate();
   const params = useParams();
@@ -89,7 +89,7 @@ export default function BusinessRegistration() {
     .then(function (response) {
       //Not sure we need this here but how else would we call register?
       document.querySelector("label.information").innerHTML = "Edit Successful"
-      navigate("/startups");
+      navigate(`/startup/${stID}`);
     }).catch(error => {
       document.querySelector("label.information").innerHTML = "Edit Failed"
       console.log(error)})

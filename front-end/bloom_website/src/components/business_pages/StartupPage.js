@@ -10,7 +10,7 @@ export default function StartupPage() {
     const params = useParams();
     const startupID = params.startupID
     
-    console.log(startupID)
+    //console.log(startupID)
 
     const [startup, setStartup] = useState([]);
     const url = `https://bloom-rest.herokuapp.com/startups/${startupID}`
@@ -35,9 +35,7 @@ export default function StartupPage() {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-lg-12 top-nav">
-                    <h2 className="heading">Business Detailed Page</h2>
-                </div>
+                
                 <hr className="simple"></hr>
                     <StartupCard key={startup.id} details={startup} />
             </div>
