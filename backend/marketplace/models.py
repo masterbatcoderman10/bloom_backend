@@ -17,14 +17,14 @@ class Category(models.Model):
         ("CLD", "Cloud Services")
     ]
 
-    category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
+    category = models.CharField(max_length=3, choices=CATEGORY_CHOICES, unique=True)
 
     def __str__(self):
         return self.category
 
 class Vendor(models.Model):
 
-    name = models.CharField(max_length=50, blank=False)
+    name = models.CharField(max_length=50, blank=False, unique=True)
     description = models.TextField(blank=False)
     pricing = models.CharField(max_length=12, blank=True)
     category = models.OneToOneField(Category,on_delete=models.CASCADE, blank=False)
