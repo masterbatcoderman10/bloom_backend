@@ -19,13 +19,19 @@ class Category(models.Model):
 
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
 
+    def __str__(self):
+        return self.category
+
 class Vendor(models.Model):
 
     name = models.CharField(max_length=50, blank=False)
     description = models.TextField(blank=False)
-    pricing = models.TextField(max_length=12, blank=True)
+    pricing = models.CharField(max_length=12, blank=True)
     category = models.OneToOneField(Category,on_delete=models.CASCADE, blank=False)
     logo = models.ImageField(null=True)
     main_link = models.TextField(blank=False)
     account_link = models.TextField(blank=False)
     features = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
