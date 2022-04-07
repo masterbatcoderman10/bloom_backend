@@ -1,4 +1,21 @@
-.navbar {
+#bloom-nav {
+  background: #462b0e;
+
+}
+
+#heading {
+  color: #fff;
+  font-size: 1.5em;
+  
+}
+
+.nav-li {
+  margin: 7px 0;
+  text-align: center;
+  
+}
+
+/* .navbar {
   background: #462b0e;
   height: 80px;
   display: flex;
@@ -54,9 +71,9 @@
   text-decoration: none;
   padding: 0.25rem 1rem;
   
-}
+} */
 
-.nav-links:hover {
+/* .nav-links:hover {
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }
@@ -145,12 +162,12 @@
     color: #fff;
     padding: 14px 20px;
     border: 1px solid #fff;
-    transition: all 0.3s ease-out;
+    
   }
 
   .nav-links-mobile:hover {
     background: #fff;
     color: #242424;
-    transition: 250ms;
+    
   }
-}
+} */
