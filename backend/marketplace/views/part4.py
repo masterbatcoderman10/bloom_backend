@@ -17,8 +17,8 @@ class VendorListView(APIView):
         data = {}
         #filtering the vendors based on category
         try:
-            category = Category.objects.get(category=cat)
-            vendors = Vendor.objects.filter(category_id=category.id)
+            
+            vendors = Vendor.objects.filter(category=cat)
             serializer = VendorSerializer(vendors, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
