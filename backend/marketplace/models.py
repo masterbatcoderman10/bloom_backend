@@ -3,8 +3,12 @@ from pyexpat import features
 from sre_constants import CATEGORY
 from unicodedata import category
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
+def upload_to(instance, filename):
+
+    return f'images/{filename}'
 class Category(models.Model):
 
     CATEGORY_CHOICES = [
@@ -39,7 +43,7 @@ class Vendor(models.Model):
     description = models.TextField(blank=False)
     pricing = models.CharField(max_length=12, blank=True)
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
-    logo = models.ImageField(null=True, upload_to="live-static/media-root")
+    logo = models.ImageField(null=True, upload_to=upload_to)
     main_link = models.TextField(blank=False)
     account_link = models.TextField(blank=False)
     features = models.TextField(blank=True)

@@ -5,6 +5,7 @@ from .models import Category
 
 class VendorSerializer(serializers.ModelSerializer):
 
+    logo = serializers.ImageField(required=True)
     class Meta:
         model = Vendor
         fields = (
