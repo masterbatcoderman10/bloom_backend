@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from pyexpat import features
 from sre_constants import CATEGORY
 from unicodedata import category
@@ -28,7 +29,7 @@ class Vendor(models.Model):
     description = models.TextField(blank=False)
     pricing = models.CharField(max_length=12, blank=True)
     category = models.OneToOneField(Category,on_delete=models.CASCADE, blank=False)
-    logo = models.ImageField(null=True)
+    logo = models.ImageField(null=True, upload_to="marketplace/static")
     main_link = models.TextField(blank=False)
     account_link = models.TextField(blank=False)
     features = models.TextField(blank=True)

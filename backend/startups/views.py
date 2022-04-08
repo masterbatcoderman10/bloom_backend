@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import APIView, api_view
 from rest_framework import permissions
-from .permissions import IsOwner
 from startups.models import Business
 from startups.serializers import BusinessSerializer
 
@@ -102,7 +101,7 @@ class BusinessListView(APIView):
 
 class BusinessDetailView(APIView):
 
-    permissions = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     # Function to handle sending data about one selected business to the user, the pk argument stands for primary key
     def get(self, request, pk):
