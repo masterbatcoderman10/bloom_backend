@@ -20,7 +20,8 @@ from django.urls import  include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('authentication/', include('users.urls')),
-    path('startups/', include('startups.urls'))
+    path('startups/', include('startups.urls')),
+    path('marketplace/', include("marketplace.urls"))
 
     #Vendor Section URLS
 ]
