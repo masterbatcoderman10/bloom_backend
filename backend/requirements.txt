@@ -1,12 +1,8 @@
 asgiref==3.5.0
 attr==0.3.1
-backports.zoneinfo==0.2.1
-black==22.3.0
-click==8.1.2
 cycler==0.11.0
 Django==4.0.3
 django-cors-headers==3.11.0
-django-environ==0.8.1
 django-filter==21.1
 djangorestframework==3.13.1
 fonttools==4.30.0
@@ -33,7 +29,5 @@ six==1.16.0
 sqlparse==0.4.2
 threadpoolctl==3.1.0
 tk==0.1.0
-tomli==2.0.1
-typing_extensions==4.1.1
 webencodings==0.5.1
 
