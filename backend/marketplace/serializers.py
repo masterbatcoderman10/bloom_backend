@@ -15,9 +15,11 @@ class VendorSerializer(serializers.ModelSerializer):
             'pricing',
             'category',
             'logo',
+            'screen_image',
             'main_link',
             'account_link',
-            'features'
+            'features',
+            'rating'
         )
 
 

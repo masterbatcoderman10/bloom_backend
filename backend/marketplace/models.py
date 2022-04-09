@@ -44,9 +44,12 @@ class Vendor(models.Model):
     pricing = models.CharField(max_length=12, blank=True)
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
     logo = models.ImageField(null=True, upload_to=upload_to)
+    screen_image = models.ImageField(null=True, upload_to=upload_to)
     main_link = models.TextField(blank=False)
     account_link = models.TextField(blank=False)
     features = models.TextField(blank=True)
+    rating = models.DecimalField(default=0, max_digits=2, decimal_places=1)
+
 
     def __str__(self):
         return self.name
