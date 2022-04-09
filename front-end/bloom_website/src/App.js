@@ -14,6 +14,7 @@ import BusinessContainer from './components/business_pages/BusinessContainer';
 import BusReg from "./components/businessReg_pages/BusReg"
 import GDPR from "./components/authentication_pages/GDPR"
 import BusEdit from "./components/businessReg_pages/BusEdit"
+import CategorizedVendors from './components/marketplace_pages/CategorizedVendors';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/register" element={<Registration />}></Route>
           <Route path="*" element={<Error />}></Route>
           <Route path="/policy" element={<GDPR />}></Route>
+          <Route path="/vendors/:vendorCat" element={<CategorizedVendors />}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>

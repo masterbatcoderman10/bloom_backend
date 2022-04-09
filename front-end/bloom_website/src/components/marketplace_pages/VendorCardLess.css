@@ -1,0 +1,138 @@
+.vendor-detail {
+    border-radius: 4%;
+    background-color: #fff8ef;
+    
+
+}
+
+#star-one {
+    color: rgb(225, 225, 225);
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+}
+
+.vendor-text-name {
+    margin: 0;
+    font-family: "Oxygen", 'sans-serif';
+}
+
+.descriptor {
+    font-size: 0.75em;
+    font-family: "Oxygen", 'sans-serif';
+
+
+}
+.info {
+    line-height: 0.5em;   
+    padding: 2% 0 0 0;
+}
+
+.screen {
+    padding: 3%;
+}
+
+.btn-holder {
+    position: relative;
+}
+
+.info-btn {
+    padding: 5%;
+    font-size: 0.8em;
+    border-radius: 10%;
+    background-color: #000;
+    border: none;
+    color: white;
+    font-family: 'Oxygen', "sans-serif";
+    font-weight: 100;
+    transition: all 0.3s ease-out;
+    position: absolute;
+    top: 20%;
+    left: 30%
+
+}
+
+
+.info-btn:hover {
+    background: #e0ceb9;
+    border: none;
+    color: #000;
+    transition: all 0.3s ease-out;
+    border-radius: 10%;
+    position: absolute;
+    top: 20%;
+    left: 30%
+    
+    
+    
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    div.info {
+        line-height: 0.5em;   
+        padding: 4% 0 0 5%;
+        
+    }
+
+    .info-btn {
+        padding: 5%;
+        font-size: 0.8em;
+        border-radius: 10%;
+        background-color: #000;
+        border: none;
+        color: white;
+        font-family: 'Oxygen', "sans-serif";
+        font-weight: 100;
+        transition: all 0.3s ease-out;
+        position: absolute;
+        top: 25%;
+        left: 30%
+    
+    }
+    
+    
+    .info-btn:hover {
+        background: #e0ceb9;
+        border: none;
+        color: #000;
+        transition: all 0.3s ease-out;
+        border-radius: 10%;
+        position: absolute;
+        top: 25%;
+        left: 30%
+        
+        
+        
+    }
+
+}
+
+@media (max-width: 767px) {
+    .logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    div.info {
+
+        padding: 1% 0 0 0;
+
+    }
+
+    .info-btn {
+        height: 30px;
+        padding: 0 4%;
+        left: 55%;
+
+    }
+
+    .info-btn:hover {
+        height: 30px;
+        padding: 0 4%;
+        left: 55%;
+
+    }
+
+}
