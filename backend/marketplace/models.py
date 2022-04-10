@@ -49,6 +49,7 @@ class Vendor(models.Model):
     account_link = models.TextField(blank=False)
     features = models.TextField(blank=True)
     rating = models.DecimalField(default=0, max_digits=2, decimal_places=1)
+    descriptor = models.CharField(max_length=40, blank=False)
 
 
     def __str__(self):
