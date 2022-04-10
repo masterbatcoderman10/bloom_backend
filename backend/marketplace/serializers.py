@@ -19,7 +19,8 @@ class VendorSerializer(serializers.ModelSerializer):
             'main_link',
             'account_link',
             'features',
-            'rating'
+            'rating',
+            'descriptor'
         )
 
 
