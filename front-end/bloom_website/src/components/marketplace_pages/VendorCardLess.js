@@ -13,17 +13,17 @@ export default function VendorCardLess({details}) {
 
 
                 <div className="row">
-                    <div className="col-lg-2 col-md-2 col-sm-2">
+                    <div className="col-lg-2 col-md-2 col-sm-2 col-2">
                         <img className="logo-img" src={img_url}></img>
                     </div>
-                    <div className="col-lg-7 col-md-5 col-sm-5 info">
+                    <div className="col-lg-7 col-md-5 col-sm-5 col-5 info">
                         <h2 className="vendor-text-name">{details.name}</h2>
-                        <small className="text-muted descriptor">{details.category}</small>
+                        <small className="text-muted descriptor">{details.descriptor}</small>
                     </div>
-                    <div className="col-lg-3 col-md-5 col-sm-5 btn-holder">
+                    <div className="col-lg-3 col-md-5 col-sm-5 col-5 btn-holder">
                         <button className="info-btn">View Info</button>
                     </div>
-                    <div className="col-lg-12 d-sm-none d-lg-block d-md-block">
+                    <div className="col-lg-12 d-sm-none d-none d-lg-block d-md-block">
                         <img src={img2_url} className="screen"></img>
                     </div>
                 </div>
