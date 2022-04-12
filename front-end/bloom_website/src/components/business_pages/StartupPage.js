@@ -9,11 +9,13 @@ export default function StartupPage() {
 
     const params = useParams();
     const startupID = params.startupID
-    
+    const [loading, setLoading] = useState(true);
     //console.log(startupID)
 
     const [startup, setStartup] = useState([]);
+    const [dashboardId, setDashboardID] = useState(0);
     const url = `https://bloom-rest.herokuapp.com/startups/${startupID}`
+    const dashboard_url = `https://bloom-rest.herokuapp.com/dashboard/${startupID}/isPresent`
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem("token"));
@@ -25,8 +27,25 @@ export default function StartupPage() {
         })
         .then((response) => {
             setStartup(response.data);
+            setLoading(false);
         })
         .catch((error) => console.log(error));
+
+        //Call to get dashboard id or create a dashboard if it doesn't exist.
+        axios
+        .get(dashboard_url, {
+            headers: {
+            Authorization: `Token ${token}`,
+            },
+        })
+        .then((response) => {
+
+            setDashboardID(response.data.id)
+
+        })
+        .catch((error) => console.log(error));
+
+
 
     }, [setStartup])
 
@@ -37,7 +56,7 @@ export default function StartupPage() {
             <div className="row">
                 
                 <hr className="simple"></hr>
-                    <StartupCard key={startup.id} details={startup} />
+                    <StartupCard key={startup.id} details={startup} isLoading={loading} d_ID={dashboardId} />
             </div>
         </div>
     )

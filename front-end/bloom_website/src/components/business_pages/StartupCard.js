@@ -3,11 +3,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../img4.jpg"
 import { Button } from "../Button";
+import { Loader } from '../Loader'
+
 
 export default function StartupCard(props) {
   const navigate = useNavigate();
   console.log(props);
-  return (
+  const loaded = props.isLoading;
+  return loaded ? <Loader></Loader> : (
     <div className="busi-holder card mb-3">
       <img src={image} className="card-img-top" id="card-img" alt="..." />
       {/* <img src="..."></img> */}
@@ -23,6 +26,7 @@ export default function StartupCard(props) {
         <p className="card-text">
           <span className="desc-date"><Button onClick={() => navigate(`/editStartup/${props.details.id}`)}>Edit Info</Button></span>
           <span className="desc-date"><Button>Delete</Button></span>
+          <span className="desc-date"><Button onClick={() => navigate(`/dashboard/${props.d_ID}`)}>Dashboard</Button></span>
         </p>
       </div>
     </div>

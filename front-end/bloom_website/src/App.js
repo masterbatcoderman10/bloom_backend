@@ -16,6 +16,7 @@ import GDPR from "./components/authentication_pages/GDPR"
 import BusEdit from "./components/businessReg_pages/BusEdit"
 import CategorizedVendors from './components/marketplace_pages/CategorizedVendors';
 import VendorPage from './components/Vendor_Detail_Page/VendorPage';
+import DashboardGetter from './components/dashboard_pages/DashboardGetter';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/startups" element={<BusinessContainer />}></Route>
             <Route path="/startup/:startupID" element={<StartupPage />}></Route>
             <Route path="/editStartup/:startupID" element={<BusEdit />}></Route>
+            <Route path="/dashboard/:dashboardID" element={<DashboardGetter />}></Route>
             
           </Route>
         </Routes>
