@@ -30,5 +30,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = (
             'id',
-            'category'
+            'category',
+            'description'
+            'background'
         )

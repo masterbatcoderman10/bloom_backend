@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'users',
     'startups',
-    'marketplace'
+    'marketplace',
+    'vendor_dashboard',
+    'innovators'
 ]
 
 MIDDLEWARE = [

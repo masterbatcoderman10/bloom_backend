@@ -11,3 +11,6 @@ marketplace/__pycache__/
 .vscode/
 live-static/
 static/
+
+dashboard/__pycache__/
+dashboard/migrations/__pycache__/

@@ -23,6 +23,8 @@ class Category(models.Model):
     ]
 
     category = models.CharField(max_length=3, choices=CATEGORY_CHOICES)
+    description = models.TextField(null=True)
+    background = models.ImageField(null=True, upload_to=upload_to)
 
     def __str__(self):
         return self.category
