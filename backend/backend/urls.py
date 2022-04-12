@@ -28,7 +28,8 @@ urlpatterns = [
     path('startups/', include('startups.urls')),
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     #Vendor Section URLS
-    path('marketplace/', include("marketplace.urls"))
+    path('marketplace/', include("marketplace.urls")),
+    path('dashboard/', include('vendor_dashboard.urls'))
 ] 
 
 #For development purposes only

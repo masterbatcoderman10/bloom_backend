@@ -14,15 +14,11 @@ class VendorDetailView(APIView):
         data = {}
 
         try: 
-            vendor = Vendor.objects.get(vendorid=vendorid)
+            vendor = Vendor.objects.get(id=vendorid)
         except Vendor.DoesNotExist:
 
             data["message"] = "Vendor does not exist"
             return Response(data, status.HTTP_400_BAD_REQUEST)
-        
-        if request.user != Vendor.user:
-            data["message"] = "Not authorized"
-            return Response(data, status.HTTP_401_UNAUTHORIZED)
             
         serializer = VendorSerializer(vendor)
         return Response(serializer.data, status.HTTP_200_OK)
