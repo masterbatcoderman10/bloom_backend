@@ -5,7 +5,7 @@ from rest_framework import permissions
 from marketplace.models import Vendor
 from marketplace.serializers import VendorSerializer
 
-class BusinessDetailView(APIView):
+class VendorDetailView(APIView):
 
     permission_classes = [permissions.AllowAny]
 
