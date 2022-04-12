@@ -71,7 +71,7 @@ export default function VendorCard(props) {
           <div class="u-expanded-width u-list u-list-1">
             <div class="u-repeater u-repeater-1">
               <div class="u-align-center u-container-style u-list-item u-repeater-item">
-                <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-circle u-palette-1-light-1 u-spacing-20 u-text-white u-icon-1"><img src="images/5.png" alt=""></span>
+                <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-icon-circle u-palette-1-light-1 u-spacing-20 u-text-white u-icon-1"><img src="images/5.png" alt=""/></span>
                   <p class="u-text u-text-default u-text-2">pricing</p>
                 </div>
               </div>

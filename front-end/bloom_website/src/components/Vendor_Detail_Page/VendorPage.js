@@ -13,7 +13,7 @@ export default function VendorPage() {
     console.log(vendorID)
 
     const [vendor, setVendor] = useState([]);
-    const url = `https://bloom-rest.herokuapp.com/marketplace/${vendorID}`
+    const url = `https://bloom-rest.herokuapp.com/marketplace/${vendorID}/details`
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem("token"));
