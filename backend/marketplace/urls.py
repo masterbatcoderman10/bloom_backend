@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path("<str:cat>/", view=views.VendorListView.as_view()),
-    path("<int:pk>/", view=views.BusinessDetailView.as_view())
+    path("<int:vendorid>/", view=views.BusinessDetailView.as_view())
 ]

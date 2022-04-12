@@ -10,11 +10,11 @@ class BusinessDetailView(APIView):
     permission_classes = [permissions.AllowAny]
 
     # Function to handle sending data about one selected business to the user, the pk argument stands for primary key
-    def get(self, request, pk):
+    def get(self, request, vendorid):
         data = {}
 
         try: 
-            vendor = Vendor.objects.get(pk=pk)
+            vendor = Vendor.objects.get(vendorid=vendorid)
         except Vendor.DoesNotExist:
 
             data["message"] = "Vendor does not exist"
