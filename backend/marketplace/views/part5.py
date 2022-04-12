@@ -9,16 +9,16 @@ class VendorDetailView(APIView):
 
     permission_classes = [permissions.AllowAny]
 
-    # Function to handle sending data about one selected business to the user, the pk argument stands for primary key
     def get(self, request, vendorid):
         data = {}
-
         try: 
             vendor = Vendor.objects.get(id=vendorid)
         except Vendor.DoesNotExist:
 
             data["message"] = "Vendor does not exist"
+            print("bad")
             return Response(data, status.HTTP_400_BAD_REQUEST)
-            
+        
+
         serializer = VendorSerializer(vendor)
         return Response(serializer.data, status.HTTP_200_OK)
