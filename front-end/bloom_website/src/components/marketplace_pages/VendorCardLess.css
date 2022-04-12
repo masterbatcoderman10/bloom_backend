@@ -1,6 +1,7 @@
 .vendor-detail {
     border-radius: 4%;
     background-color: #fff8ef;
+    margin-bottom: 3%;
     
 
 }
@@ -10,8 +11,11 @@
 }
 
 .logo-img {
-    width: 80px;
-    height: 80px;
+    width: 48px;
+    height: 48px;
+    position: relative;
+    top: 25%;
+    left: 25%;
 }
 
 .vendor-text-name {
@@ -26,12 +30,13 @@
 
 }
 .info {
-    line-height: 0.5em;   
+    line-height: 0.8em;   
     padding: 2% 0 0 0;
 }
 
 .screen {
     padding: 3%;
+    height: 360px;
 }
 
 .btn-holder {
@@ -69,6 +74,19 @@
     
 }
 
+/* Large Screens */
+@media (min-width: 992px) and (max-width: 1200px) {
+    .vendor-text-name {
+        font-size: 1.2em;
+    }
+
+    .screen {
+        padding: 3%;
+        height: 300px;
+    }
+}
+/* Medium Screens */
+
 @media (min-width: 768px) and (max-width: 991px) {
     div.info {
         line-height: 0.5em;   
@@ -76,8 +94,12 @@
         
     }
 
+    .descriptor {
+        font-size: 0.5em;
+    }
+
     .info-btn {
-        padding: 5%;
+        padding: 0 4%;
         font-size: 0.8em;
         border-radius: 10%;
         background-color: #000;
@@ -88,12 +110,15 @@
         transition: all 0.3s ease-out;
         position: absolute;
         top: 25%;
-        left: 30%
+        left: 30%;
+        height: 25px;
+        font-size: 0.7em;
     
     }
     
     
     .info-btn:hover {
+        padding: 0 4%;
         background: #e0ceb9;
         border: none;
         color: #000;
@@ -101,23 +126,41 @@
         border-radius: 10%;
         position: absolute;
         top: 25%;
-        left: 30%
-        
-        
-        
+        left: 30%;
+        height: 25px;
+        font-size: 0.7em;
+           
+    }
+
+    .vendor-text-name {
+        margin: 0;
+        font-family: "Oxygen", 'sans-serif';
+        font-size: 0.8em;
+    }
+
+    .logo-img {
+        width: 35px;
+        height: 35px;
+        position: relative;
+        top: 25%;
+        left: 25%;
+    }
+
+    .screen {
+        height: 234px;
     }
 
 }
 
-@media (max-width: 767px) {
-    .logo-img {
-        width: 60px;
-        height: 60px;
-    }
+/* Small Screens */
+
+@media (min-width: 577px) and (max-width: 767px) {
+    
 
     div.info {
 
         padding: 1% 0 0 0;
+        line-height: 0.3em;
 
     }
 
@@ -133,6 +176,73 @@
         padding: 0 4%;
         left: 55%;
 
+    }
+
+    .vendor-text-name {
+        font-size: 1em
+    }
+
+    .logo-img {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        top: 15%;
+        left: 25%;
+    }
+
+    .vendor-detail {
+        height: 45px;
+    }
+
+    .descriptor {
+        font-size: 0.5em;
+    }
+
+}
+
+/* X-Small Screens */
+@media (max-width: 576px) {
+
+    div.info {
+
+        padding: 1% 0 0 0;
+
+    }
+
+    .info-btn {
+        height: 25px;
+        padding: 0 4%;
+        left: 55%;
+        font-size: 0.5em;
+
+    }
+
+    .info-btn:hover {
+        height: 25px;
+        padding: 0 4%;
+        left: 55%;
+        font-size: 0.5em;
+
+    }
+
+    .vendor-text-name {
+        font-size: 1em
+    }
+
+    .logo-img {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        top: 15%;
+        left: 25%;
+    }
+
+    .vendor-detail {
+        height: 45px;
+    }
+
+    .descriptor {
+        font-size: 0.5em;
     }
 
 }
