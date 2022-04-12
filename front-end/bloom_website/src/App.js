@@ -15,6 +15,7 @@ import BusReg from "./components/businessReg_pages/BusReg"
 import GDPR from "./components/authentication_pages/GDPR"
 import BusEdit from "./components/businessReg_pages/BusEdit"
 import CategorizedVendors from './components/marketplace_pages/CategorizedVendors';
+import VendorPage from './components/Vendor_Detail_Page/VendorPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="*" element={<Error />}></Route>
           <Route path="/policy" element={<GDPR />}></Route>
           <Route path="/vendors/:vendorCat" element={<CategorizedVendors />}></Route>
+          <Route path="/vendors/:vendorID" element={<VendorPage/>}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>
