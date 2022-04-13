@@ -38,6 +38,40 @@ class DashboardConfirmView(APIView):
         serializer = DashboardSerializer(dashboard)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
 
+
+class MembersListView(APIView):
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, dashID):
+
+        data = {}
+
+        #Using dashboard id to get business id, to check whether the user is authorized
+        d = Dashboard.objects.get(id= dashID)
+        b = Business.objects.get(id=d.startup_id)
+
+        if request.user != b.user:
+            data["message"] = "Not authorized"
+            return Response(data, status.HTTP_401_UNAUTHORIZED)
+
+        
+
+        members = Membership.objects.filter(dashboard_id = dashID)
+
+        vendor_ids = []
+
+        for member in members:
+            vendor_ids.append(member.vendor_id)
+        
+        print(vendor_ids)
+
+        vendors = Vendor.objects.filter(id__in=vendor_ids)
+
+        serializer = VendorSerializer(vendors, many=True)
+
+        return Response(serializer.data, status.HTTP_200_OK)
        
     
