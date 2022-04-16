@@ -1,0 +1,44 @@
+div.title {
+    padding: 3% 0 0 3%;
+}
+
+.feature {
+    float: left;
+    width: 100%;
+}
+
+.feature-holder {
+    overflow: hidden
+}
+
+/* Very large screen */
+@media (min-width: 1200px) {
+
+    .feature {
+        width: 25%;
+        font-size: 0.9em;
+
+        
+    }
+}
+
+/* Large Screens */
+@media (min-width: 992px) and (max-width: 1200px) {
+    .feature {
+        width: 33.3%;
+        font-size: 0.9em;
+    }
+}
+/* Medium Screens */
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .feature {
+        width: 50%;
+    }
+}
+
+@media (max-width: 766px) {
+    .feature {
+        font-size: 0.7em;
+    }
+}

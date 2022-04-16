@@ -4,10 +4,10 @@ import './BusinessContainer.css'
 import BusinessCard from "./BusinessCard";
 import {Loader} from "../Loader";
 
-export default function BusinessHolder({startups, isLoading}) {
+export default function BusinessHolder({startups, isLoading, isDash, vendorID}) {
 
     function renderItems() {
-        return startups.map(startup => <BusinessCard key={startup.id} details={startup} />)
+        return startups.map(startup => <BusinessCard key={startup.id} details={startup} isDash={isDash} vendorID={vendorID}/>)
     }
 
     return isLoading ? (<Loader />) :(

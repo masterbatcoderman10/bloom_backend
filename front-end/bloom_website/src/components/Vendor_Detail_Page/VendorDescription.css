@@ -1,0 +1,24 @@
+div.desc-holder {
+    
+    padding: 3% 0 0 3%;
+}
+
+p.desc {
+    font-style: normal;
+}
+
+div.price-holder {
+    padding: 3% 0 0 3%;
+}
+
+.divider {
+    width: 70% !important;
+    margin: 0 auto;
+
+}
+
+@media (max-width: 767px) {
+    .desc {
+        font-size: 0.8em;
+    }
+}

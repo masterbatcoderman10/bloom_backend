@@ -9,7 +9,7 @@ export default function VendorPage() {
 
     const params = useParams();
     const vendorID = params.vendorID
-    
+    const [isLoading, setLoading] = useState(true);
     console.log(vendorID)
 
     const [vendor, setVendor] = useState([]);
@@ -24,6 +24,7 @@ export default function VendorPage() {
             },
         })
         .then((response) => {
+            setLoading(false);
             setVendor(response.data);
         })
         .catch((error) => console.log(error));
@@ -34,10 +35,9 @@ export default function VendorPage() {
 
     return (
         <div className="container">
-            <div className="row">
+            <div className="row parent">
                 
-                <hr className="simple"></hr>
-                    <VendorCardSimple key={vendor.id} details={vendor} />
+                <VendorCardSimple key={vendor.id} details={vendor} isLoading={isLoading} />
             </div>
         </div>
     )

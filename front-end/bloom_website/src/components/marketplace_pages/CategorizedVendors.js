@@ -10,7 +10,7 @@ export default function CategorizedVendors() {
     const vendorCat = params.vendorCat;
     console.log(vendorCat)
     let heading = "";
-    const url = `https://bloom-rest.herokuapp.com/marketplace/${vendorCat}`
+    const url = `https://bloom-rest.herokuapp.com/marketplace/${vendorCat}/categorized/`
 
     switch(vendorCat) {
         case "TM":
@@ -40,7 +40,7 @@ export default function CategorizedVendors() {
     }
 
     return (
-        <VendorListGetter url={url} heading={heading} />
+        <VendorListGetter url={url} heading={heading} isDash={false} />
     )
     
 

@@ -17,6 +17,7 @@ import BusEdit from "./components/businessReg_pages/BusEdit"
 import CategorizedVendors from './components/marketplace_pages/CategorizedVendors';
 import VendorPage from './components/Vendor_Detail_Page/VendorPage';
 import DashboardGetter from './components/dashboard_pages/DashboardGetter';
+import DashboardLinkMedium from './components/dashboard_pages/DashboardLinkMedium';
 
 function App() {
   return (
@@ -30,13 +31,14 @@ function App() {
           <Route path="*" element={<Error />}></Route>
           <Route path="/policy" element={<GDPR />}></Route>
           <Route path="/vendors/:vendorCat" element={<CategorizedVendors />}></Route>
-          <Route path="/vendors/:vendorID" element={<VendorPage/>}></Route>
+          <Route path="/vendor/:vendorID/vendorDetails" element={<VendorPage/>}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>
             <Route path="/startup/:startupID" element={<StartupPage />}></Route>
             <Route path="/editStartup/:startupID" element={<BusEdit />}></Route>
             <Route path="/dashboard/:dashboardID" element={<DashboardGetter />}></Route>
+            <Route path="/vendor/:vendorID/linkVendor" element={<DashboardLinkMedium />}></Route>
             
           </Route>
         </Routes>
