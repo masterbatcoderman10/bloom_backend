@@ -52,6 +52,8 @@ class Vendor(models.Model):
     features = models.TextField(blank=True)
     rating = models.DecimalField(default=0, max_digits=2, decimal_places=1)
     descriptor = models.CharField(max_length=40, blank=False)
+    alt_1 = models.TextField(default="Logo")
+    alt_2 = models.TextField(default="Screen of App")
 
 
     def __str__(self):
