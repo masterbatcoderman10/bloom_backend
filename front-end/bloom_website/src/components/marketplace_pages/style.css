@@ -1,0 +1,24 @@
+.header
+{
+    background-color: #462b0e;
+}
+
+.header li a
+{
+    color:#462b0e;
+    font-size: larger;
+}
+ li a:hover
+{
+    text-decoration: none;
+    color:#462b0e;
+    font-weight: 700;
+}
+html {
+    scroll-behavior: smooth;
+   }
+   
+   a {
+    text-decoration: none;
+    color: #462b0e;
+   } 

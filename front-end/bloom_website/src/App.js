@@ -18,6 +18,7 @@ import CategorizedVendors from './components/marketplace_pages/CategorizedVendor
 import VendorPage from './components/Vendor_Detail_Page/VendorPage';
 import DashboardGetter from './components/dashboard_pages/DashboardGetter';
 import DashboardLinkMedium from './components/dashboard_pages/DashboardLinkMedium';
+import Content from './components/marketplace_pages/Content';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/policy" element={<GDPR />}></Route>
           <Route path="/vendors/:vendorCat" element={<CategorizedVendors />}></Route>
           <Route path="/vendor/:vendorID/vendorDetails" element={<VendorPage/>}></Route>
+          <Route path="/marketplace" element={<Content />}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path="/addStartup" element={<BusReg />} />
             <Route path="/startups" element={<BusinessContainer />}></Route>

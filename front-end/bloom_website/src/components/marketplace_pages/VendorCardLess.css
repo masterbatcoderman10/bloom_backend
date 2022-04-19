@@ -113,39 +113,7 @@ a.account-link:hover {
         height: 300px;
     }
 
-    a.info-btn {
-        padding: 0 4%;
-        font-size: 0.6em !important;
-        border-radius: 10%;
-        background-color: #000;
-        border: none;
-        color: white;
-        font-family: 'Oxygen', "sans-serif";
-        font-weight: 100;
-        transition: all 0.3s ease-out;
-        position: absolute;
-        top: 25%;
-        left: 30%;
-        height: 25px;
-        font-size: 0.7em;
     
-    }
-    
-    
-    a.info-btn:hover {
-        padding: 0 4%;
-        background: #e0ceb9;
-        border: none;
-        color: #000;
-        transition: all 0.3s ease-out;
-        border-radius: 10%;
-        position: absolute;
-        top: 25%;
-        left: 30%;
-        height: 25px;
-        font-size: 0.7em;
-           
-    }
 }
 /* Medium Screens */
 

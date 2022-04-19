@@ -1,0 +1,146 @@
+.category-detail {
+    border-radius: 4%;
+    background-color: #fff8ef;
+    
+
+}
+
+.category-name {
+    margin: 0;
+    font-family: "Oxygen", 'sans-serif';
+}
+
+.description {
+    font-size: 0.75em;
+    font-family: "Oxygen", 'sans-serif';
+
+
+}
+
+.desc {
+    height: 150px;
+}
+.info {
+    line-height: 0.5em;   
+    padding: 2% 0 0 0;
+}
+
+.screen {
+    padding: 3%;
+}
+
+.btn-holder {
+    position: relative;
+}
+
+.view-btn {
+    padding: 2%;
+    font-size: 0.8em;
+    border-radius: 10%;
+    background-color: #000;
+    border: none;
+    color: white;
+    font-family: 'Oxygen', "sans-serif";
+    font-weight: 100;
+    transition: all 0.3s ease-out;
+    height: 35px;
+    box-sizing: border-box;
+    text-decoration: none;
+
+}
+
+
+.view-btn:hover {
+    background: #e0ceb9;
+    border: none;
+    color: #000;
+    transition: all 0.3s ease-out;
+    border-radius: 10%;
+    
+    
+    
+    
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    div.info {
+        line-height: 0.5em;   
+        padding: 4% 0 0 5%;
+        
+    }
+
+    .view-btn {
+        padding: 2%;
+        font-size: 0.8em;
+        border-radius: 10%;
+        background-color: #000;
+        border: none;
+        color: white;
+        font-family: 'Oxygen', "sans-serif";
+        font-weight: 100;
+        transition: all 0.3s ease-out;
+        
+        top: 25%;
+        left: 30%
+    
+    }
+    
+    
+    .view-btn:hover {
+        background: #e0ceb9;
+        border: none;
+        color: #000;
+        transition: all 0.3s ease-out;
+        border-radius: 10%;
+        
+        top: 25%;
+        left: 30%
+        
+        
+        
+    }
+
+    .desc {
+        font-size: 0.8em;
+        height: 180px;
+    }
+
+    .card-img {
+        height: 150px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    div.info {
+
+        padding: 1% 0 0 0;
+
+    }
+
+    .view-btn {
+        height: 30px;
+        padding: 0 2%;
+        left: 55%;
+
+    }
+
+    .view-btn:hover {
+        height: 30px;
+        padding: 0 2%;
+        left: 55%;
+
+    }
+
+}
+
+.card-img {
+    width: 300px;
+    height: 196px
+}
+
