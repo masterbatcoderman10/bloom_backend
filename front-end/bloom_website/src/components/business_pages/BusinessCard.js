@@ -10,7 +10,7 @@ export default function BusinessCard(props) {
   const navigate = useNavigate();
   console.log(props);
   
-  const url = `http://127.0.0.1:8000/dashboard/${props.details.id}/${props.vendorID}/addMember/`
+  const url = `http://bloom-rest.herokuapp.com/dashboard/${props.details.id}/${props.vendorID}/addMember/`
   
   return (
     <div className="col-lg-12 busi-holder" id={props.id}>
