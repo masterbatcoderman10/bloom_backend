@@ -18,11 +18,7 @@ export default function VendorPage() {
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem("token"));
         axios
-        .get(url, {
-            headers: {
-            Authorization: `Token ${token}`,
-            },
-        })
+        .get(url)
         .then((response) => {
             setLoading(false);
             setVendor(response.data);
