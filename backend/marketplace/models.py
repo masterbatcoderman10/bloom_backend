@@ -54,6 +54,7 @@ class Vendor(models.Model):
     descriptor = models.CharField(max_length=40, blank=False)
     alt_1 = models.TextField(default="Logo")
     alt_2 = models.TextField(default="Screen of App")
+    pricing_model = models.CharField(max_length=150, default="monthly")
 
 
     def __str__(self):

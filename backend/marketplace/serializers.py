@@ -20,7 +20,10 @@ class VendorSerializer(serializers.ModelSerializer):
             'account_link',
             'features',
             'rating',
-            'descriptor'
+            'descriptor',
+            'alt_1',
+            "alt_2",
+            "pricing_model"
         )
 
 
