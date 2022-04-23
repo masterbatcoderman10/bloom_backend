@@ -29,7 +29,8 @@ urlpatterns = [
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     #Vendor Section URLS
     path('marketplace/', include("marketplace.urls")),
-    path('dashboard/', include('vendor_dashboard.urls'))
+    path('dashboard/', include('vendor_dashboard.urls')),
+    path('recommendations/', include('recommendations.urls'))
 ] 
 
 #For development purposes only

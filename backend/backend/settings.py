@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'startups',
     'marketplace',
     'vendor_dashboard',
-    'innovators'
+    'innovators',
+    'recommendations'
 ]
 
 MIDDLEWARE = [
