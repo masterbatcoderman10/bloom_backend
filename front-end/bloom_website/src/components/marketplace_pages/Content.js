@@ -36,9 +36,9 @@ function Content() {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-md-12">
-                <h3 className="text-center mt-4 text-secondary">
+                <h1 className="text-center mt-4 text-secondary">
                   Welcome To Our Marketplace
-                </h3>
+                </h1>
               </div>
             </div>
             <div className="row">

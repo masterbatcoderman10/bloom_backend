@@ -23,7 +23,7 @@ export default function CategoryGetter({ heading, url }) {
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-md-12">
-            <h3 className="text-center mt-4 text-secondary">Our Vendors</h3>
+            <h2 className="text-center mt-4 text-secondary">Our Vendors</h2>
           </div>
         </div>
         <div className="row">
