@@ -41,7 +41,7 @@ export default function CategoryCard({details}) {
                 <img
                   class="card-img-top card-img"
                   src={img_url}
-                  alt=""
+                  alt="Illustration"
                  
                 />
                 <div class="card-body">

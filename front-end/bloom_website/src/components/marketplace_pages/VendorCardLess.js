@@ -13,7 +13,7 @@ export default function VendorCardLess({ details, isDash }) {
       <div className="vendor-detail">
         <div className="row">
           <div className="col-lg-2 col-md-2 col-sm-2 col-2">
-            <img className="logo-img" src={img_url}></img>
+            <img className="logo-img" src={img_url} alt={details.alt_1}></img>
           </div>
           <div className="col-lg-7 col-md-5 col-sm-5 col-5 info">
             <h2 className="vendor-text-name">{details.name}</h2>
@@ -51,7 +51,7 @@ export default function VendorCardLess({ details, isDash }) {
                 : "col-lg-12 d-sm-none d-none d-lg-block d-md-block"
             }
           >
-            <img src={img2_url} className="screen"></img>
+            <img src={img2_url} className="screen" alt={details.alt_2}></img>
           </div>
         </div>
       </div>

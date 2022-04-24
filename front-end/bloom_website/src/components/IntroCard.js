@@ -11,7 +11,7 @@ export default function IntroCard(props) {
           <p className="description">{props.props.text}</p>
         </div>
         <div className="col-lg-4 img-holder">
-          <img src={props.props.imgPath} />
+          <img src={props.props.imgPath} alt={props.props.alt_tag}/>
         </div>
       </div>
     </div>

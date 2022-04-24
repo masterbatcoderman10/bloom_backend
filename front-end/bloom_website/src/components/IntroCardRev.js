@@ -7,7 +7,7 @@ export default function IntroCardRev(props) {
     <div className="col-lg-12 intro">
       <div className="row">
         <div className="col-lg-4 img-holder">
-          <img src={props.props.imgPath} />
+          <img src={props.props.imgPath} alt={props.props.alt_tag}/>
         </div>
         <div className="col-lg-8">
           <h2>{props.props.heading}</h2>

@@ -12,16 +12,19 @@ let headings = [
     heading: "Find what's most important to your business",
     text: "Welcome to Bloom! It is a one stop destination which caters to all your business needs, from marketing services to accounting analysis. Join our committee to find the best services globally, specially tailored to meet your requirements.",
     imgPath: img1,
+    alt_tag: "Picture of a field"
   },
   {
     heading: "Marketplace for vendors",
     text: "At Bloom there exists an extensive marketplace of globally established vendors providing top tier services. We cut down the time you have to spend trying to find the right vendor, enabling you to spend time on what's important - your business.",
     imgPath: mkt,
+    alt_tag: "Marketplace illustrion"
   },
   {
     heading: "A Hub for your Ideas",
     text: "Are you an innovator? Do you have ideas you would like to see in place? If yes, you have come to the right platform. Start building your creative ideas on our application, which ultimately also provides businesses with the best services internationally.",
     imgPath: img3,
+    alt_tag: "Time lapse image of a highway"
   },
 ];
 
