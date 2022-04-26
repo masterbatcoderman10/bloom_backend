@@ -12,8 +12,12 @@
 .nav-li {
   margin: 7px 0;
   text-align: center;
-  
 }
+
+.nav-link {
+  color: white;
+}
+
 
 /* .navbar {
   background: #462b0e;
