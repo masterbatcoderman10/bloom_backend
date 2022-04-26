@@ -5,6 +5,7 @@ import image from "../img4.jpg";
 import { Button } from "../Button";
 import { Loader } from "../Loader";
 import DeleteModal from "./DeleteModal";
+import RecommendationsModal from "./RecommendationsModal";
 
 
 export default function StartupCard(props) {
@@ -31,6 +32,9 @@ export default function StartupCard(props) {
           </span>
         </p>
         <p className="card-text">
+          A team of {props.details.num_employees} members
+        </p>
+        <p className="card-text">
           <span className="desc-date">
             <Button
               onClick={() => navigate(`/editStartup/${props.details.id}`)}
@@ -39,7 +43,15 @@ export default function StartupCard(props) {
             </Button>
           </span>
           <span className="desc-date">
-            <Button>Delete</Button>
+          <button
+              type="button"
+              className="btn btn--primary btn--medium"
+              id="sign-in-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#recomendationsModal"
+            >
+              Generate Recomendations
+            </button>
           </span>
           <span className="desc-date">
             <Button onClick={() => navigate(`/dashboard/${props.d_ID}`)}>
@@ -60,6 +72,7 @@ export default function StartupCard(props) {
         </p>
       </div>
       <DeleteModal startupID={props.details.id}></DeleteModal>
+      <RecommendationsModal></RecommendationsModal>
     </div>
   );
 }

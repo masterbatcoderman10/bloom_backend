@@ -1,0 +1,19 @@
+import React from 'react';
+import VendorListGetter from '../marketplace_pages/VendorListGetter';
+import { useNavigate, useParams } from 'react-router-dom';
+
+export default function Recomendations() {
+    const navigate = useNavigate();
+    const params = useParams();
+
+    const startupID = params.startupID;
+    const vendorCat = params.vendorCat;
+    const options = params.options;
+
+    
+
+    return (
+        // <VendorListGetter url={url} heading={"Recomendations"} isDash={false}></VendorListGetter>
+        <h1>Recommendations</h1>
+    )
+}

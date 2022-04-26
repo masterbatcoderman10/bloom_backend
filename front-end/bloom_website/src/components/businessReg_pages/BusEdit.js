@@ -82,7 +82,7 @@ export default function BusEdit() {
 
     //Sending the object to the backend
     axios
-    .put(`https://bloom-rest.herokuapp.com/startups/${stID}`, obj, {
+    .put(`https://bloom-rest.herokuapp.com/startups/${stID}/`, obj, {
       headers: {
       Authorization: `Token ${token}`,
       }})

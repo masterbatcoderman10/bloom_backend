@@ -19,6 +19,7 @@ import VendorPage from './components/Vendor_Detail_Page/VendorPage';
 import DashboardGetter from './components/dashboard_pages/DashboardGetter';
 import DashboardLinkMedium from './components/dashboard_pages/DashboardLinkMedium';
 import Content from './components/marketplace_pages/Content';
+import Recomendations from './components/recommendation_pages/Recommendations';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
             <Route path="/editStartup/:startupID" element={<BusEdit />}></Route>
             <Route path="/dashboard/:dashboardID" element={<DashboardGetter />}></Route>
             <Route path="/vendor/:vendorID/linkVendor" element={<DashboardLinkMedium />}></Route>
-            
+            <Route path="/recommendations/:startupID/:vendorCat/:option" element={<Recomendations />}></Route>
           </Route>
         </Routes>
         
