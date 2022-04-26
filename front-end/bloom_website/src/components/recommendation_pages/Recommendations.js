@@ -10,10 +10,14 @@ export default function Recomendations() {
     const vendorCat = params.vendorCat;
     const options = params.options;
 
-    
+    if (!(startupID | vendorCat | options)) {
+        navigate("/error")
+    }
+
+    const url = `https://bloom-rest.herokuapp.com/recommendations/${startupID}/${vendorCat}/${options}`
 
     return (
-        // <VendorListGetter url={url} heading={"Recomendations"} isDash={false}></VendorListGetter>
-        <h1>Recommendations</h1>
+        <VendorListGetter url={url} heading={"Recomendations"} isDash={false}></VendorListGetter>
+        
     )
 }
