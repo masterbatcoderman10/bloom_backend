@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from html5lib import serialize
 from joblib import load
@@ -129,7 +130,7 @@ def predict_value(vendor_names, employee_range, duration, category):
    
     e_code = employee_to_code(employee_range)
 
-    data_to_send = [e_code, duration]
+    data_to_send = [e_code, duration_to_code(duration)]
 
     model_file = modelChecker(category)
     model = load_model(model_file)
@@ -176,8 +177,15 @@ class RecommendationView(APIView):
 
         for v in vs:
             v_names.append(v.name)
+
+
+        try:
         
-        predictions = predict_value(v_names, e_num, option, catName)
+            predictions = predict_value(v_names, e_num, option, catName)
+        
+        except KeyError:
+            data["message"] = "Invalid option value"
+            return Response(data, status.HTTP_400_BAD_REQUEST)
         
         n_to_take = 2
         predicted_vendors = []
