@@ -65,25 +65,19 @@ span.desc-date {
     font-family: 'Oxygen', "sans-serif";
     font-weight: 100;
     transition: all 0.3s ease-out;
-    position: absolute;
-    top: 20%;
-    left: 30%
+    
 
 }
 
 
 .info-btn:hover {
     background: #e0ceb9;
-    border: none;
+ 
     color: #000;
     transition: all 0.3s ease-out;
     border-radius: 10%;
-    position: absolute;
-    top: 20%;
-    left: 30%
-    
-    
-    
 }
+
+
 
 

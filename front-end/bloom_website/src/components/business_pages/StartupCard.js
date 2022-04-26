@@ -1,16 +1,19 @@
 import "./StartupCard.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import image from "../img4.jpg"
+import image from "../img4.jpg";
 import { Button } from "../Button";
-import { Loader } from '../Loader'
+import { Loader } from "../Loader";
+import DeleteModal from "./DeleteModal";
 
 
 export default function StartupCard(props) {
   const navigate = useNavigate();
   console.log(props);
   const loaded = props.isLoading;
-  return loaded ? <Loader></Loader> : (
+  return loaded ? (
+    <Loader></Loader>
+  ) : (
     <div className="busi-holder card mb-3">
       <img src={image} className="card-img-top" id="card-img" alt="..." />
       {/* <img src="..."></img> */}
@@ -20,15 +23,43 @@ export default function StartupCard(props) {
           {props.details.founders}
         </p>
         <p className="card-text">
-          <span className="desc-date text-muted">{props.details.description}</span>
-          <span className="desc-date text-muted">{props.details.date_founded}</span>
+          <span className="desc-date text-muted">
+            {props.details.description}
+          </span>
+          <span className="desc-date text-muted">
+            {props.details.date_founded}
+          </span>
         </p>
         <p className="card-text">
-          <span className="desc-date"><Button onClick={() => navigate(`/editStartup/${props.details.id}`)}>Edit Info</Button></span>
-          <span className="desc-date"><Button>Delete</Button></span>
-          <span className="desc-date"><Button onClick={() => navigate(`/dashboard/${props.d_ID}`)}>Dashboard</Button></span>
+          <span className="desc-date">
+            <Button
+              onClick={() => navigate(`/editStartup/${props.details.id}`)}
+            >
+              Edit Info
+            </Button>
+          </span>
+          <span className="desc-date">
+            <Button>Delete</Button>
+          </span>
+          <span className="desc-date">
+            <Button onClick={() => navigate(`/dashboard/${props.d_ID}`)}>
+              Dashboard
+            </Button>
+          </span>
+          <span className="desc-date">
+            <button
+              type="button"
+              className="btn btn--primary btn--medium"
+              id="sign-in-btn"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              Delete
+            </button>
+          </span>
         </p>
       </div>
+      <DeleteModal startupID={props.details.id}></DeleteModal>
     </div>
   );
 }
