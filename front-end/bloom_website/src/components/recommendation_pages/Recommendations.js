@@ -10,7 +10,7 @@ export default function Recomendations() {
     const vendorCat = params.vendorCat;
     const options = params.options;
 
-    if (!(startupID | vendorCat | options)) {
+    if (!(startupID & vendorCat & options)) {
         navigate("/error")
     }
 
