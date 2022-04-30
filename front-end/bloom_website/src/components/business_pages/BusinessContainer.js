@@ -13,7 +13,7 @@ export default function BusinessContainer({forDash, vendorID}) {
 
     const [startups, setStartups] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    const url = "https://bloom-rest.herokuapp.com/startups/"
+    const url = "https://bloom-rest.herokuapp.com/startups/businesses/"
 
     useEffect(() => {
 

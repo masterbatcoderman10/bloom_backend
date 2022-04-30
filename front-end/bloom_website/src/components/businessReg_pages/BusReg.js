@@ -112,7 +112,7 @@ export default function BusinessRegistration() {
     console.log(ind);
 
     axios
-    .post("https://bloom-rest.herokuapp.com/startups/", objToSend, {
+    .post("https://bloom-rest.herokuapp.com/startups/businesses/", objToSend, {
       headers: {
       Authorization: `Token ${token}`,
       }})
