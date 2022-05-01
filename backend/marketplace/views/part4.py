@@ -17,12 +17,13 @@ class VendorListView(APIView):
         data = {}
         #filtering the vendors based on category
         try:
-            
+            Category.objects.get(category=cat)
+
             vendors = Vendor.objects.filter(category=cat)
             serializer = VendorSerializer(vendors, many=True)
 
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except Vendor.DoesNotExist:
+        except Category.DoesNotExist:
 
             data["message"] = "This category is incorrect"
             return Response(data, status.HTTP_400_BAD_REQUEST)
