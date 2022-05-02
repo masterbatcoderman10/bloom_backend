@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     
-    path("<int:stID>/<str:catName>/<str:option>/generateRecommendations", view=views.RecommendationView.as_view())
+    path("<int:stID>/<str:catName>/<str:option>/recommendations", view=views.RecommendationView.as_view())
 ]
