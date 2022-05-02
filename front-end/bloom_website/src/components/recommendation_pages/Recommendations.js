@@ -15,7 +15,7 @@ export default function Recomendations() {
         navigate("/error")
     }
 
-    const url = `https://bloom-rest.herokuapp.com/recommendations/${startupID}/${vendorCat}/${option}/generateRecommendations`;
+    const url = `https://bloom-rest.herokuapp.com/recommendations/${startupID}/${vendorCat}/${option}/recommendations`;
     console.log(url);
     return (
         <VendorListGetter url={url} heading={"Recomendations"} isDash={false} isRecommended={true}></VendorListGetter>
