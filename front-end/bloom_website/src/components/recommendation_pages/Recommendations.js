@@ -8,16 +8,17 @@ export default function Recomendations() {
 
     const startupID = params.startupID;
     const vendorCat = params.vendorCat;
-    const options = params.options;
+    const option = params.option;
+    console.log(option);
 
-    if (!(startupID & vendorCat & options)) {
+    if (!(startupID & vendorCat & option)) {
         navigate("/error")
     }
 
-    const url = `https://bloom-rest.herokuapp.com/recommendations/${startupID}/${vendorCat}/${options}`
-
+    const url = `https://bloom-rest.herokuapp.com/recommendations/${startupID}/${vendorCat}/${option}/generateRecommendations`;
+    console.log(url);
     return (
-        <VendorListGetter url={url} heading={"Recomendations"} isDash={false}></VendorListGetter>
+        <VendorListGetter url={url} heading={"Recomendations"} isDash={false} isRecommended={true}></VendorListGetter>
         
     )
 }

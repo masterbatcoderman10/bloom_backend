@@ -50,7 +50,7 @@ export default function StartupCard(props) {
               data-bs-toggle="modal"
               data-bs-target="#recomendationsModal"
             >
-              Generate Recomendations
+              Recomendations
             </button>
           </span>
           <span className="desc-date">
@@ -72,7 +72,7 @@ export default function StartupCard(props) {
         </p>
       </div>
       <DeleteModal startupID={props.details.id}></DeleteModal>
-      <RecommendationsModal></RecommendationsModal>
+      <RecommendationsModal startupID={props.details.id}></RecommendationsModal>
     </div>
   );
 }

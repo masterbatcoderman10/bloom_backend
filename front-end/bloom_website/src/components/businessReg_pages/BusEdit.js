@@ -291,7 +291,7 @@ export default function BusEdit() {
                 className="btn btn-primary"
                 onClick={(e) => edit(e)}
               >
-                Register
+                Confirm
               </button>
             </div>
           </div>
