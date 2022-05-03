@@ -71,7 +71,7 @@ class MemberDetailView(APIView):
         Dashboard.objects.get_or_create(startup_id=startupID)
         dashboard = Dashboard.objects.get(startup_id=startupID)
 
-        Membership.objects.delete(dashboard_id=dashboard.id, vendor_id=vendorID)
+        Membership.objects.get(dashboard_id=dashboard.id, vendor_id=vendorID).delete()
         data["messages"] = "membership deleted"
 
         return Response(data, status.HTTP_200_OK)
