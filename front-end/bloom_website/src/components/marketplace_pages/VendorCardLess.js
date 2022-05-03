@@ -25,12 +25,21 @@ export default function VendorCardLess({ details, isDash, stID }) {
             </small>
           </div>
           <div className="col-lg-3 col-md-5 col-sm-5 col-5 btn-holder">
-            <button
+            {
+             isDash ? 
+             <button
+             className="info-btn"
+           >
+             <a className = "link-account" href={details.account_link} target="_blank">Your Account</a>
+           </button>: 
+              <button
               className="info-btn"
               onClick={() => navigate(`/vendor/${details.id}/vendorDetails`)}
             >
               View Info
             </button>
+            
+            }
 
             {isDash ? (
               <svg
