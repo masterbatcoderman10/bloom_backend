@@ -54,7 +54,7 @@ export default function StartupCard(props) {
             </button>
           </span>
           <span className="desc-date">
-            <Button onClick={() => navigate(`/dashboard/${props.d_ID}`)}>
+            <Button onClick={() => navigate(`/dashboard/${props.d_ID}`, {state: {stID: props.details.id}})}>
               Dashboard
             </Button>
           </span>

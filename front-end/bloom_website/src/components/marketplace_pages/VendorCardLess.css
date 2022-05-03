@@ -21,11 +21,15 @@ a.account-link:hover {
 }
 
 .logo-img {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
     position: relative;
     top: 25%;
     left: 25%;
+}
+
+.deleting-text {
+    color: red;
 }
 
 .vendor-text-name {
