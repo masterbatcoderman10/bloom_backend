@@ -7,7 +7,7 @@ export default function DeleteModal({startupID}) {
 
     const navigate = useNavigate();
 
-    const url = `https://bloom-rest.herokuapp.com/startups/${startupID}`
+    const url = `https://bloom-rest.herokuapp.com/startups/${startupID}/details`
 
     function deleteBusiness() {
 

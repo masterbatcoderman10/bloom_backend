@@ -7,7 +7,7 @@ export default function DashboardGetter() {
 
     const params = useParams();
     const dashID = params.dashboardID
-    const url = `https://bloom-rest.herokuapp.com/dashboard/${dashID}/vendorList/`;
+    const url = `https://bloom-rest.herokuapp.com/dashboard/${dashID}/members/`;
 
     return (
         <VendorListGetter url={url} heading={"Your Dashboard"} isDash={true}/>

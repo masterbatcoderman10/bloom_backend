@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom"
 export default function RecommendationsModal({startupID}) {
 
     const navigate = useNavigate();
-    const [category, setCategory] = useState();
-    const [duration, setDuration] = useState();    
+    const [category, setCategory] = useState("MA");
+    const [duration, setDuration] = useState("Free Trial");    
     function gotoRecommendations() {
 
         if (!(category) & !(duration)) {

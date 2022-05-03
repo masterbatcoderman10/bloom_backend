@@ -15,7 +15,7 @@ export default function StartupPage() {
     const [startup, setStartup] = useState([]);
     const [dashboardId, setDashboardID] = useState(0);
     const url = `https://bloom-rest.herokuapp.com/startups/${startupID}/details`
-    const dashboard_url = `https://bloom-rest.herokuapp.com/dashboard/${startupID}/isPresent`
+    const dashboard_url = `https://bloom-rest.herokuapp.com/dashboard/${startupID}/exists`
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem("token"));

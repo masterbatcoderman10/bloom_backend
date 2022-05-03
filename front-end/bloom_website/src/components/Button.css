@@ -7,7 +7,7 @@
   color: #fff;
 }
 
-#sign-in-btn:hover {
+#sign-in-btn:hover, #sign-in-btn:focus {
   background: #e0ceb9;
 
   color: #000;
