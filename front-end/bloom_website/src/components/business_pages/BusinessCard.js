@@ -16,7 +16,7 @@ export default function BusinessCard(props) {
     <div className="col-lg-12 busi-holder" id={props.id}>
       <div className="primary-row">
         <h3 className="busi-title">{props.details.name}</h3>
-        <p className="desc">{props.details.description}</p>
+        <p className="description">{props.details.description}</p>
       </div>
       <div className="btn-row">
         <Button onClick={() => {
